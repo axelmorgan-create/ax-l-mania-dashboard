@@ -1,19 +1,28 @@
 {
-  "name": "new-project-6",
-  "version": "1.0.0",
-  "description": "AX-L Mania AI command dashboard prototype",
+  "name": "ax-l-mania-dashboard",
+  "version": "0.2.4",
+  "description": "AX-L Mania command center — visual pointer into the brain vault",
   "type": "module",
+  "main": "electron/main.cjs",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "refresh": "node scripts/refresh-world-news.mjs && node scripts/build-data.mjs",
+    "dev": "npm run refresh && vite --host 127.0.0.1 --port 5173 --strictPort",
+    "build": "npm run refresh && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "electron": "electron .",
+    "dev:electron": "npm run refresh && concurrently -k -n vite,electron -c blue,magenta \"vite --host 127.0.0.1 --port 5173 --strictPort\" \"wait-on http://127.0.0.1:5173 && VITE_DEV_URL=http://127.0.0.1:5173 electron .\"",
+    "foleybot": "node scripts/foleybot-server.mjs",
+    "dev:full": "npm run refresh && concurrently -k -n vite,foleybot,electron -c blue,green,magenta \"vite --host 127.0.0.1 --port 5173 --strictPort\" \"node scripts/foleybot-server.mjs\" \"wait-on http://127.0.0.1:5173 && VITE_DEV_URL=http://127.0.0.1:5173 electron .\"",
+    "dist": "npm run build && electron-builder --mac --config.directories.output=release"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.95.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
+    "mapbox-gl": "^3.23.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "three": "^0.184.0"
@@ -21,8 +30,52 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.5.0",
+    "concurrently": "^9.2.1",
+    "electron": "^42.0.0",
+    "electron-builder": "^26.8.1",
     "postcss": "^8.5.14",
     "tailwindcss": "^3.4.17",
-    "vite": "^8.0.11"
+    "vite": "^8.0.11",
+    "wait-on": "^9.0.5"
+  },
+  "build": {
+    "appId": "com.axlfolie.dashboard",
+    "productName": "AX-L Mania",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "scripts/**/*",
+      "src/data/state.json",
+      "data-sources/**/*",
+      "public/assets/**/*"
+    ],
+    "asarUnpack": [
+      "scripts/**/*",
+      "data-sources/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "src/data/state.json",
+        "to": "state.json"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "dir",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    }
   }
 }

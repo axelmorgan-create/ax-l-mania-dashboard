@@ -1,0 +1,63 @@
+{
+  "fetchedAt": "2026-05-11T06:44:50.058Z",
+  "status": "live",
+  "feeds": [
+    {
+      "source": "BBC World",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
+    },
+    {
+      "source": "Reuters Business",
+      "url": "https://feeds.reuters.com/reuters/businessNews"
+    },
+    {
+      "source": "The Verge",
+      "url": "https://www.theverge.com/rss/index.xml"
+    }
+  ],
+  "items": [
+    {
+      "source": "BBC World",
+      "title": "Trump calls Iran response to US proposal to end war 'totally unacceptable'",
+      "url": "https://www.bbc.com/news/articles/clypgz9e5pmo?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Mon, 11 May 2026 01:55:13 GMT"
+    },
+    {
+      "source": "BBC World",
+      "title": "His father had just been buried. Then West Bank settlers forced him to dig up the body",
+      "url": "https://www.bbc.com/news/articles/cjrpnjpl39po?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Sun, 10 May 2026 19:56:45 GMT"
+    },
+    {
+      "source": "BBC World",
+      "title": "French national shows symptoms on return from hantavirus-hit ship",
+      "url": "https://www.bbc.com/news/articles/c3r2p70jdy7o?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Mon, 11 May 2026 03:29:58 GMT"
+    },
+    {
+      "source": "BBC World",
+      "title": "Ailing Iran Nobel laureate given bail and hospital transfer",
+      "url": "https://www.bbc.com/news/articles/c1j257w87neo?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Mon, 11 May 2026 00:40:45 GMT"
+    },
+    {
+      "source": "BBC World",
+      "title": "Thailand's divisive ex-PM is out of jail, but is the Thaksin era over?",
+      "url": "https://www.bbc.com/news/articles/c99l1590kr0o?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Mon, 11 May 2026 03:41:34 GMT"
+    },
+    {
+      "source": "BBC World",
+      "title": "Iran activists tell BBC how threat of war intensifies trauma of repression",
+      "url": "https://www.bbc.com/news/articles/c1m2ee3jxvro?at_medium=RSS&at_campaign=rss",
+      "publishedAt": "Sun, 10 May 2026 21:01:17 GMT"
+    }
+  ],
+  "errors": [
+    {
+      "source": "Reuters Business",
+      "status": "warn",
+      "detail": "fetch failed"
+    }
+  ]
+}

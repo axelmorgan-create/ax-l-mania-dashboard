@@ -1,0 +1,21 @@
+{
+  "appName": "AX-L Mania Player",
+  "clientId": "f710e36c2c024ee9aa3a59548f411526",
+  "redirectUri": "axlmania://auth-callback",
+  "authFlow": "authorization_code_pkce",
+  "clientSecretPolicy": "do_not_store_desktop_app_secret",
+  "clientSecretStatus": "compromised_in_chat_rotate_in_spotify_dashboard",
+  "scopes": [
+    "user-read-playback-state",
+    "user-modify-playback-state",
+    "user-read-currently-playing",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    "streaming"
+  ],
+  "notes": [
+    "Client ID is public and safe to store for the desktop PKCE app.",
+    "Client secret was intentionally not stored. Rotate it in Spotify Developer Dashboard and do not paste the new secret anywhere.",
+    "Desktop apps must use PKCE and macOS Keychain for tokens. No plaintext secrets."
+  ]
+}

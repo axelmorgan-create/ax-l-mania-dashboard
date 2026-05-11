@@ -1,0 +1,1796 @@
+{
+  "meta": {
+    "generatedAt": "2026-05-11T06:54:38.725Z",
+    "today": "2026-05-11",
+    "vaultRoot": "/Users/axlfoliem/Documents/brain 2",
+    "sources": {
+      "vault": "ok",
+      "spotify": "snapshot",
+      "google": "blocked",
+      "finance": "extracted",
+      "quickbooks": "blocked"
+    }
+  },
+  "hub": {
+    "northStars": [
+      {
+        "domain": "Music",
+        "metric": "Catalog wiki",
+        "value": "exists",
+        "type": "stock",
+        "awaiting": null
+      },
+      {
+        "domain": "Finance",
+        "metric": "Vault financial reality",
+        "value": "captured",
+        "type": "control",
+        "awaiting": null
+      },
+      {
+        "domain": "Network",
+        "metric": "People wiki",
+        "value": "captured",
+        "type": "pipeline",
+        "awaiting": null
+      },
+      {
+        "domain": "Agents",
+        "metric": "Active TRL≥4",
+        "value": "4 / 5",
+        "type": "input"
+      },
+      {
+        "domain": "Vault",
+        "metric": "Total entries",
+        "value": "5240",
+        "type": "leading"
+      }
+    ],
+    "triggers": [
+      {
+        "label": "The \"Notice of Possible Legal Action",
+        "rule": "deadline this week",
+        "level": "WATCH",
+        "n": 1
+      },
+      {
+        "label": "Gmail / Google One payment status",
+        "rule": "deadline this week",
+        "level": "WATCH",
+        "n": 2
+      },
+      {
+        "label": "BMI / Warner royalty statements (Kim",
+        "rule": "deadline this week",
+        "level": "WATCH",
+        "n": 3
+      },
+      {
+        "label": "The 90-day consolidation protocol",
+        "rule": "deadline 2026-05-10",
+        "level": "CRITICAL",
+        "n": 4
+      },
+      {
+        "label": "Wix and GoDaddy infrastructure rot",
+        "rule": "deadline this week",
+        "level": "WATCH",
+        "n": 5
+      }
+    ],
+    "killList": [
+      "Screenshotting framework grids — write in own words or scroll past",
+      "TikTok aphorisms / 'i hope you' content",
+      "Influencer prompt grids / 'secret codes'",
+      "Tool catalogs (stale in 60 days)",
+      "Beginner-level reference content in domains past beginner"
+    ],
+    "content": {
+      "kpis": [
+        [
+          "Outputs",
+          "2583",
+          "files generated"
+        ],
+        [
+          "Deep-dive briefs",
+          "20",
+          "from ChatGPT export"
+        ],
+        [
+          "Wiki notes",
+          "13",
+          "synthesis"
+        ],
+        [
+          "Active projects",
+          "7",
+          "ok"
+        ]
+      ],
+      "economics": [
+        [
+          "AI-chats raw",
+          "2400",
+          "largest single corpus"
+        ],
+        [
+          "Screenshots",
+          "103",
+          "May 5–6 session-heavy"
+        ],
+        [
+          "Imports",
+          "61",
+          "queue: 4 to process"
+        ],
+        [
+          "Total raw size",
+          "6.4 GB",
+          "all media"
+        ]
+      ]
+    }
+  },
+  "brain": {
+    "stats": [
+      [
+        "Vault entries",
+        "5240"
+      ],
+      [
+        "New entries (7d)",
+        "2910"
+      ],
+      [
+        "Decision-log rows",
+        "28"
+      ],
+      [
+        "Processing queue",
+        "4"
+      ]
+    ],
+    "focus": [
+      {
+        "label": "Life OS",
+        "val": 80
+      },
+      {
+        "label": "Chairman",
+        "val": 80
+      },
+      {
+        "label": "Obsidian Second Brain",
+        "val": 100
+      },
+      {
+        "label": "Claude Code",
+        "val": 100
+      }
+    ],
+    "operator": [
+      [
+        "Active projects",
+        "7"
+      ],
+      [
+        "Active areas",
+        "1"
+      ],
+      [
+        "Wiki synthesis",
+        "13 notes"
+      ],
+      [
+        "Synthesis gaps",
+        "0"
+      ]
+    ],
+    "memoryAllocation": {
+      "rawSize": "6.4 GB",
+      "synthesizedSize": "7.4 MB",
+      "capture": {
+        "quickNotes": 4,
+        "voiceMemos": 2
+      },
+      "research": [
+        {
+          "n": 1,
+          "title": "May 5 screen-recording audio"
+        },
+        {
+          "n": 2,
+          "title": "May 5–6 screenshot clusters"
+        },
+        {
+          "n": 3,
+          "title": "ChatGPT voice-mode audio files"
+        },
+        {
+          "n": 4,
+          "title": "ChatGPT conversation markdown corpus"
+        }
+      ]
+    },
+    "synthesisGaps": [
+      {
+        "title": "What this vault is for, and what it is not for",
+        "file": "wiki/What this vault is for, and what it is not for.md",
+        "reason": "constitution — highest-leverage missing wiki note",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Music catalog",
+        "file": "wiki/music/catalog.md",
+        "reason": "every track, status, ownership, splits, masters, registrations",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Network / people",
+        "file": "wiki/network/people.md",
+        "reason": "top 30 relationships, last contact, what they're for",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Business state",
+        "file": "wiki/business/state.md",
+        "reason": "income sources, monthly burn, runway — required for allocator-grade decisions",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Agent governance",
+        "file": "wiki/Agent Governance.md",
+        "reason": "synthesis from chairman governance transcript",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Claude Code + Obsidian workflow",
+        "file": "wiki/Claude Code + Obsidian Workflow.md",
+        "reason": "blocked behind transcription of May-5 screen recording",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "ASHLAND visual world",
+        "file": "wiki/ASHLAND visual world.md",
+        "reason": "promote-if-canon — currently a resource",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      }
+    ],
+    "agents": {
+      "active": [
+        {
+          "name": "Life OS",
+          "purpose": "Personal operating layer for discipline, focus, habits, relationships, self-respect, and identity control",
+          "tool": "Claude / Hermes / Claude Code base prompt",
+          "focus": "Personal OS",
+          "status": "Active",
+          "trl": 4,
+          "lastUsed": "2026-05-10",
+          "output30d": "Yes",
+          "contextFolder": "Yes",
+          "rule": "Keep — governs the man beneath all external systems; rewrite if it becomes motivational or absorbs Chairman territory",
+          "disposition": "Keep"
+        },
+        {
+          "name": "Chairman",
+          "purpose": "Strategic lens for external systems: brand, capital, category, governance, narrative, leverage, IP, and market design",
+          "tool": "Claude Code (`/chairman`)",
+          "focus": "AI / Business / Brand / Governance",
+          "status": "Active",
+          "trl": 4,
+          "lastUsed": "2026-05-10",
+          "output30d": "Yes",
+          "contextFolder": "Yes",
+          "rule": "Keep — governed strategic lens; rewrite if it becomes hype or absorbs Life OS territory",
+          "disposition": "Keep"
+        },
+        {
+          "name": "Obsidian Second Brain",
+          "purpose": "Knowledge vault and decision substrate",
+          "tool": "Obsidian",
+          "focus": "Operating System",
+          "status": "Active",
+          "trl": 5,
+          "lastUsed": "2026-05-06",
+          "output30d": "Yes",
+          "contextFolder": "N/A (substrate)",
+          "rule": "Keep — substrate of all other agents",
+          "disposition": "Keep"
+        },
+        {
+          "name": "Claude Code",
+          "purpose": "Local agent runtime for builds, edits, and slash commands",
+          "tool": "Claude Code (CLI)",
+          "focus": "AI / Automation",
+          "status": "Active",
+          "trl": 5,
+          "lastUsed": "2026-05-06",
+          "output30d": "Yes",
+          "contextFolder": "N/A (substrate)",
+          "rule": "Keep — substrate of all other agents",
+          "disposition": "Keep"
+        },
+        {
+          "name": "Briefer",
+          "purpose": "Morning analyst — connects fresh captures to older notes; writes `daily/brief-YYYY-MM-DD.md` Mon–Fri 06:00",
+          "tool": "Claude Code (launchd cron)",
+          "focus": "AI / OS",
+          "status": "Active",
+          "trl": 3,
+          "lastUsed": "2026-05-08",
+          "output30d": "No (new)",
+          "contextFolder": "Yes",
+          "rule": "Kill if 14 briefs surface no non-obvious connection or fabricated citations appear",
+          "disposition": "Keep — under proof"
+        }
+      ],
+      "parking": [
+        {
+          "name": "Foleybot Dashboard",
+          "whyMatters": "Personal command center concept",
+          "reasonDemoted": "No folder; unclear what is built vs. aspirational; no proof of active use",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "ChatGPT Strategy Advisor",
+          "whyMatters": "Strategy and decision support",
+          "reasonDemoted": "Being displaced by Chairman; no folder; redundant with `/chairman`",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "Codex Builder",
+          "whyMatters": "Code generation and technical support",
+          "reasonDemoted": "No folder; no evidence of active use; redundant with Claude Code",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "Suno Prompt Extractor",
+          "whyMatters": "Capture liked Suno prompts for the second brain",
+          "reasonDemoted": "Planned only; no folder; narrow utility — may belong as a skill, not an agent",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "EPK Visual Prompt System",
+          "whyMatters": "Generate cinematic prompts for Firefly / Runway / visual assets",
+          "reasonDemoted": "Marked Active but no folder, no proof; high potential for music release work",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "Finance Admin Agent",
+          "whyMatters": "Royalty, tax, banking, and business document collection",
+          "reasonDemoted": "Planned only; scope too broad (multiple jobs); likely belongs to non-agent automation (Zapier / accounting)",
+          "decisionDate": "2026-07-05"
+        },
+        {
+          "name": "Social Cleanup Agent",
+          "whyMatters": "Review and clean social profiles for brand alignment",
+          "reasonDemoted": "Planned only; no folder; one-shot rather than recurring agent",
+          "decisionDate": "2026-07-05"
+        }
+      ]
+    }
+  },
+  "music": {
+    "goal": "turn listens into owned metadata, clean rights, paid placements, and monthly decisions",
+    "sourceNotes": {
+      "present": 21,
+      "total": 21,
+      "status": "complete"
+    },
+    "kpis": [
+      {
+        "label": "Catalog works",
+        "value": "87",
+        "delta": "84 titles",
+        "tone": "ok"
+      },
+      {
+        "label": "Rights conflicts",
+        "value": "9",
+        "delta": "10% conflict rate",
+        "tone": "warn"
+      },
+      {
+        "label": "Royalty surfaced",
+        "value": "$20.2K",
+        "delta": "BMI + WCM + WSN",
+        "tone": "ok"
+      },
+      {
+        "label": "Spotify signals",
+        "value": "1 editorial",
+        "delta": "5 EPK · 7 credits",
+        "tone": "ok"
+      },
+      {
+        "label": "Module coverage",
+        "value": "21/21",
+        "delta": "music source notes",
+        "tone": "ok"
+      },
+      {
+        "label": "Action loops",
+        "value": "12",
+        "delta": "0 closed",
+        "tone": "warn"
+      }
+    ],
+    "modules": [
+      {
+        "id": "spotify-remote",
+        "title": "Spotify Remote",
+        "status": "connected",
+        "number": "online",
+        "detail": "Tokens stored in macOS Keychain",
+        "path": "music/widgets/spotify-player-widget.md",
+        "tone": "ok"
+      },
+      {
+        "id": "catalog-intel",
+        "title": "Catalog Intel",
+        "status": "indexed",
+        "number": "87 works",
+        "detail": "84 titles · 83 Axel-credited",
+        "path": "music/dashboards/catalog-performance.md",
+        "tone": "ok"
+      },
+      {
+        "id": "rights-risk",
+        "title": "Rights Risk",
+        "status": "cleanup",
+        "number": "9 conflicts",
+        "detail": "10% of indexed works flagged",
+        "path": "music/catalog/splits.md",
+        "tone": "warn"
+      },
+      {
+        "id": "royalty-radar",
+        "title": "Royalty Radar",
+        "status": "extracted",
+        "number": "$20.2K",
+        "detail": "BMI $1.9K · WCM $18.2K · WSN $180.32",
+        "path": "music/dashboards/royalty-tracker.md",
+        "tone": "ok"
+      },
+      {
+        "id": "opportunity-pipeline",
+        "title": "Opportunity Pipeline",
+        "status": "ready",
+        "number": "6 lanes",
+        "detail": "sync, label, co-write, beat placement, brand, playlisting",
+        "path": "music/dashboards/opportunities.md",
+        "tone": "neutral"
+      },
+      {
+        "id": "monthly-review",
+        "title": "Monthly Review",
+        "status": "open loops",
+        "number": "12 actions",
+        "detail": "first-week operating ritual",
+        "path": "music/dashboards/monthly-review.md",
+        "tone": "warn"
+      }
+    ],
+    "royalty": {
+      "total": "$20.2K",
+      "sources": [
+        {
+          "label": "BMI YTD",
+          "value": "$1.9K",
+          "progress": 75
+        },
+        {
+          "label": "BMI 1Q",
+          "value": "$617.75",
+          "progress": 62
+        },
+        {
+          "label": "Warner Chappell",
+          "value": "$18.2K",
+          "progress": 73
+        },
+        {
+          "label": "WSN buried",
+          "value": "$180.32",
+          "progress": 36
+        }
+      ]
+    },
+    "catalog": {
+      "works": 87,
+      "titles": 84,
+      "axelTitles": 83,
+      "conflicts": 9,
+      "conflictRate": "10%",
+      "topConflicts": [
+        {
+          "title": "MATHCING ROLEXES",
+          "issue": "Share and/or Participant Conflict",
+          "iswc": "T9130702635"
+        },
+        {
+          "title": "CLUBHOUSE",
+          "issue": "Share and/or Participant Conflict",
+          "iswc": "T9179910997"
+        },
+        {
+          "title": "STUCC IN THE GRIND",
+          "issue": "Share and/or Participant Conflict",
+          "iswc": "T3312302511"
+        },
+        {
+          "title": "TAMMY S SONG",
+          "issue": "Share and/or Participant Conflict",
+          "iswc": "T9220944774"
+        },
+        {
+          "title": "PRAY EVERYDAY SURVIVOR S GUILT",
+          "issue": "Share and/or Participant Conflict",
+          "iswc": "T9226292495"
+        }
+      ],
+      "uniqueWorks": 87,
+      "uniqueTitles": 84,
+      "axelCreditedTitles": 83,
+      "songviewConflicts": 9,
+      "axelIdentities": [
+        "MORGAN AXEL ALBERT",
+        "MORGAN AXEL ALBERT (SP ACCT)",
+        "AXEL MORGAN MUSIC"
+      ],
+      "conflictsDetailed": [
+        {
+          "title": "MATHCING ROLEXES",
+          "iswc": "T9130702635",
+          "coWriters": [
+            "JENKINS JAY W",
+            "FAUNTLEROY JAMES EDWARD II",
+            "DOPSON LARRANCE LEVAR",
+            "EDWARDS LAMAR DAUNTE"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "CLUBHOUSE",
+          "iswc": "T9179910997",
+          "coWriters": [
+            "FEENEY ADAM KING",
+            "MC CORMICK MALCOLM JAMES",
+            "RIERA RICCI",
+            "FEENEY ADAM KING"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "STUCC IN THE GRIND",
+          "iswc": "T3312302511",
+          "coWriters": [
+            "ASGHEDOM ERMIAS JOSEPH",
+            "RAINEY BRANDON",
+            "ASGHEDOM ERMIAS JOSEPH",
+            "RAINEY BRANDON"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "TAMMY S SONG",
+          "iswc": "T9220944774",
+          "coWriters": [
+            "KENDRICK LAMAR"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "PRAY EVERYDAY SURVIVOR S GUILT",
+          "iswc": "T9226292495",
+          "coWriters": [
+            "THOMAS RUPERT JR",
+            "SCRUGGS JOSHUA QUINTON (SP ACCT)",
+            "CARLOS D ANTHONY WILLIAM"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "MONSTER",
+          "iswc": "T9306156194",
+          "coWriters": [
+            "GLOVER II DONALD MCKINLEY",
+            "NATCHE DACOURY DAHI",
+            "BIN ABRAHAM JOSEPH SHE YAA",
+            "AUSTIN JAKE"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "DOUBLE UP",
+          "iswc": null,
+          "coWriters": [
+            "BAILEY JESS",
+            "WILLARD JESS",
+            "RIERA RICCI",
+            "MUHAMMAD KHALID IBN"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "SO ELASTIC",
+          "iswc": null,
+          "coWriters": [
+            "TAN ROSEMARIE",
+            "RIERA RICCI",
+            "KENNEDY DOM"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        },
+        {
+          "title": "LEMME FIND OUT",
+          "iswc": "T3108047918",
+          "coWriters": [
+            "TARVIN CALVIN LAMAR (SP ACCT)",
+            "HASSELMANN WOLF ALFONSO",
+            "RAINEY BRANDON",
+            "MOORE RODRICK WAYNE JR (SP ACCT)"
+          ],
+          "conflict": "Share and/or Participant Conflict"
+        }
+      ]
+    },
+    "spotifyControl": {
+      "appName": "AX-L Mania Player",
+      "redirectUri": "axlmania://auth-callback",
+      "authFlow": "PKCE",
+      "tokenStatus": "connected",
+      "connected": true,
+      "storage": "macOS Keychain",
+      "expiresAt": "2026-05-09T22:36:02.727Z",
+      "artist": {
+        "name": "Axlfolie",
+        "uri": "spotify:artist:0sIAaocqA1M3h5zegadwFx",
+        "url": "https://open.spotify.com/artist/0sIAaocqA1M3h5zegadwFx",
+        "image": "https://i.scdn.co/image/ab676161000051745cff6c7e098880ce1901ca23"
+      },
+      "playlists": [
+        {
+          "name": "Written By Axlfolie",
+          "curator": "Spotify",
+          "uri": "spotify:playlist:37i9dQZF1EFzuKgiTjBm2x",
+          "url": "https://open.spotify.com/playlist/37i9dQZF1EFzuKgiTjBm2x",
+          "image": "https://image-cdn-fa.spotifycdn.com/image/ab676d630000e1f0c68b3edec26dbc9ab4bc4ba4",
+          "note": "Spotify-editorial. Existence of an editorial \"Written By\" playlist is itself a signal — write more, push for refresh."
+        }
+      ],
+      "priorityTracks": [
+        "SOONER OR LATER",
+        "When I Die feat. Axlfolie",
+        "MUTT",
+        "Late Summers",
+        "New Wave"
+      ],
+      "creditAnchors": [
+        "Kendrick Lamar — m.A.A.d city (2012)",
+        "Nipsey Hussle",
+        "Leon Thomas",
+        "Ab-Soul",
+        "Buddy",
+        "ScHoolboy Q",
+        "Drake"
+      ]
+    },
+    "channels": [
+      {
+        "label": "Spotify",
+        "status": "snapshot",
+        "value": "1 editorial"
+      },
+      {
+        "label": "Apple / iTunes",
+        "status": "note ready",
+        "value": "awaiting export"
+      },
+      {
+        "label": "YouTube",
+        "status": "note ready",
+        "value": "awaiting export"
+      },
+      {
+        "label": "TikTok / Social",
+        "status": "note ready",
+        "value": "awaiting export"
+      },
+      {
+        "label": "Shazam",
+        "status": "note ready",
+        "value": "awaiting export"
+      },
+      {
+        "label": "Chartmetric",
+        "status": "note ready",
+        "value": "awaiting export"
+      }
+    ],
+    "actions": [
+      {
+        "done": false,
+        "text": "Pull Spotify, Apple, YouTube, TikTok, Shazam, Chartmetric numbers."
+      },
+      {
+        "done": false,
+        "text": "Update top performers and anomalies."
+      },
+      {
+        "done": false,
+        "text": "Reconcile royalty statements and expected payouts."
+      },
+      {
+        "done": false,
+        "text": "Check unpaid money queue."
+      },
+      {
+        "done": false,
+        "text": "Audit missing ISRC / ISWC / PRO registration / unsigned splits."
+      },
+      {
+        "done": false,
+        "text": "Decide next month’s pushes: songs, playlists, sync targets, co-writes."
+      },
+      {
+        "done": false,
+        "text": "Complete Spotify OAuth login through AX-L Mania Player PKCE flow."
+      },
+      {
+        "done": false,
+        "text": "Store tokens securely in macOS Keychain, not in vault markdown."
+      }
+    ],
+    "spotify": {
+      "fetchedAt": "2026-05-08",
+      "fetchedBy": "claude-code",
+      "artist": {
+        "name": "Axlfolie",
+        "uri": "spotify:artist:0sIAaocqA1M3h5zegadwFx",
+        "url": "https://open.spotify.com/artist/0sIAaocqA1M3h5zegadwFx",
+        "image": "https://i.scdn.co/image/ab676161000051745cff6c7e098880ce1901ca23"
+      },
+      "curatedPlaylists": [
+        {
+          "name": "Written By Axlfolie",
+          "curator": "Spotify",
+          "uri": "spotify:playlist:37i9dQZF1EFzuKgiTjBm2x",
+          "url": "https://open.spotify.com/playlist/37i9dQZF1EFzuKgiTjBm2x",
+          "image": "https://image-cdn-fa.spotifycdn.com/image/ab676d630000e1f0c68b3edec26dbc9ab4bc4ba4",
+          "note": "Spotify-editorial. Existence of an editorial \"Written By\" playlist is itself a signal — write more, push for refresh."
+        }
+      ],
+      "tracksDeepFetch": {
+        "status": "blocked",
+        "reason": "spotify token expired between search and fetch_tracks; refresh token via Claude.ai Spotify connector and rerun npm run refresh"
+      },
+      "topTracksFromVaultEPK": [
+        "SOONER OR LATER",
+        "When I Die feat. Axlfolie",
+        "MUTT",
+        "Late Summers",
+        "New Wave"
+      ],
+      "credits": [
+        "Kendrick Lamar — m.A.A.d city (2012)",
+        "Nipsey Hussle",
+        "Leon Thomas",
+        "Ab-Soul",
+        "Buddy",
+        "ScHoolboy Q",
+        "Drake"
+      ]
+    },
+    "epkTracks": [
+      "SOONER OR LATER",
+      "When I Die feat. Axlfolie",
+      "MUTT",
+      "Late Summers",
+      "New Wave"
+    ],
+    "credits": [
+      "Kendrick Lamar — m.A.A.d city (2012)",
+      "Nipsey Hussle",
+      "Leon Thomas",
+      "Ab-Soul",
+      "Buddy",
+      "ScHoolboy Q",
+      "Drake"
+    ],
+    "pipeline": [
+      [
+        "m.A.A.d city legal",
+        "active",
+        "Lewis Brisbois / Jay-Jay Lord chain"
+      ],
+      [
+        "Royalty review",
+        "active",
+        "BMI / Warner / Kimie Aryai"
+      ],
+      [
+        "EPK shoot",
+        "designed",
+        "5-act structure locked 2025-03-17"
+      ],
+      [
+        "Sync deals",
+        "no project file",
+        "AWAITING projects/sync-deals.md"
+      ]
+    ],
+    "catalogAwaiting": null
+  },
+  "finance": {
+    "status": "extracted",
+    "kpis": [
+      {
+        "label": "Royalty income (extracted)",
+        "value": "$20.2K",
+        "delta": "BMI+WCM+WSN",
+        "awaiting": null
+      },
+      {
+        "label": "Tax exposure (2024)",
+        "value": "$201.0K",
+        "delta": "fed + CA",
+        "awaiting": null
+      },
+      {
+        "label": "Pershing brokerage",
+        "value": "$325.1K",
+        "delta": "interest $7.0K",
+        "awaiting": null
+      },
+      {
+        "label": "Card spend (Feb–Apr 25)",
+        "value": "$3.3K",
+        "delta": "Splice $224.85/mo",
+        "awaiting": null
+      }
+    ],
+    "sources": [
+      {
+        "label": "BMI (YTD 2025)",
+        "val": 37,
+        "amount": "$1.9K"
+      },
+      {
+        "label": "Warner Chappell (xlsx)",
+        "val": 91,
+        "amount": "$18.2K"
+      },
+      {
+        "label": "WSN BURIED (est.)",
+        "val": 100,
+        "amount": "$180.32"
+      },
+      {
+        "label": "Pershing brokerage",
+        "val": 80,
+        "amount": "~$325.1K activity"
+      }
+    ],
+    "watchlist": [
+      "9 Songview catalog conflicts",
+      "$201K tax owed",
+      "Pershing acct surfaced 2026-05-09",
+      "Portal creds unrotated",
+      "First paid offer not live"
+    ],
+    "pershingAdvisor": {
+      "advisor": "Kevin E. O'Hearn, CLU ChFC",
+      "address": "21800 Oxnard St Ste 800, Woodland Hills CA 91367",
+      "phone": "213-481-2464",
+      "2024_largest_amounts_seen": [
+        325050,
+        325040.39,
+        325000,
+        7009.3,
+        556.83,
+        81.32,
+        50,
+        40.39,
+        9.61,
+        0
+      ],
+      "note": "Account was unknown to projects/business state files; surfaced from 2024 1099 statement extraction 2026-05-09."
+    },
+    "draftReturnLocked": true,
+    "awaiting": {
+      "quickbooks": "data-sources/quickbooks/STATUS.md",
+      "draftReturn": "Get password from Harry @ yourtaxteam.net or open in Adobe Acrobat with credentials. Then re-run pdfplumber extraction.",
+      "wikiBusinessState": null,
+      "royaltyReview": null,
+      "domainAudit": "areas/infrastructure/domains.md"
+    },
+    "doctrine": [
+      "MONEY IS A SENSOR.",
+      "RUNWAY IS FREEDOM.",
+      "FLOW PAYS TODAY.",
+      "STOCK BUILDS POWER."
+    ]
+  },
+  "network": {
+    "kpis": [
+      [
+        "Active agents",
+        "5",
+        "4 TRL≥4"
+      ],
+      [
+        "Governed contacts",
+        "15",
+        "5 circles"
+      ],
+      [
+        "Local system",
+        "Axlfolies-MBP.lan",
+        "25d 8h"
+      ],
+      [
+        "People wiki",
+        "exists",
+        "needs rewrite"
+      ]
+    ],
+    "agents": [
+      {
+        "label": "Life OS",
+        "val": 80,
+        "amount": "TRL 4 · 2026-05-10"
+      },
+      {
+        "label": "Chairman",
+        "val": 80,
+        "amount": "TRL 4 · 2026-05-10"
+      },
+      {
+        "label": "Obsidian Second Brain",
+        "val": 100,
+        "amount": "TRL 5 · 2026-05-06"
+      },
+      {
+        "label": "Claude Code",
+        "val": 100,
+        "amount": "TRL 5 · 2026-05-06"
+      },
+      {
+        "label": "Briefer",
+        "val": 60,
+        "amount": "TRL 3 · 2026-05-08"
+      }
+    ],
+    "risks": [
+      [
+        "The \"Notice of Possible Lega",
+        "this week",
+        "WATCH"
+      ],
+      [
+        "Gmail / Google One payment s",
+        "this week",
+        "WATCH"
+      ],
+      [
+        "BMI / Warner royalty stateme",
+        "this week",
+        "WATCH"
+      ],
+      [
+        "The 90-day consolidation pro",
+        "2026-05-10",
+        "RED"
+      ],
+      [
+        "Wix and GoDaddy infrastructu",
+        "this week",
+        "WATCH"
+      ]
+    ],
+    "alerts": [
+      {
+        "level": "red",
+        "text": "m.A.A.d city legal active — IP-Defense.md is the live doc"
+      },
+      {
+        "level": "yellow",
+        "text": "5 urgent items, 1 dated"
+      },
+      {
+        "level": "yellow",
+        "text": "0 synthesis gaps unfilled"
+      }
+    ],
+    "people": {
+      "contacts": 15,
+      "emails": 8,
+      "phones": 2,
+      "circles": [
+        {
+          "name": "Legal & IP",
+          "count": 4
+        },
+        {
+          "name": "Money & tax",
+          "count": 4
+        },
+        {
+          "name": "Investments (surfaced 2026-05-09 from 2024 Pershing 1099 extraction)",
+          "count": 1
+        },
+        {
+          "name": "Publishing / labels / royalty admin",
+          "count": 5
+        },
+        {
+          "name": "Co-credit writers",
+          "count": 1
+        },
+        {
+          "name": "Creative collaborators / project counterparties",
+          "count": 0
+        },
+        {
+          "name": "Operators / advisors",
+          "count": 0
+        }
+      ],
+      "keyRelationships": [
+        {
+          "name": "Jay-Jay Lord",
+          "org": "",
+          "role": "primary entertainment counsel. Recently moved firms (). Owns the m.A.A.d city matter and Warner Chappell statement review. Calls scheduled as needed."
+        },
+        {
+          "name": "Veronica @ Altview Law Group",
+          "org": "",
+          "role": "co-counsel on Jay-Jay's side."
+        },
+        {
+          "name": "Jonathan Pink, Alea Roberts, Joseph Mills, Rohini Roy",
+          "org": "Lewis Brisbois",
+          "role": "*opposing* counsel on the Brewer / m.A.A.d city matter. Track only; no direct contact."
+        },
+        {
+          "name": "Leon @ markmml.com",
+          "org": "",
+          "role": "Sounwave's counsel. Indirect, via Pink."
+        },
+        {
+          "name": "Kimie Aryai EA",
+          "org": "",
+          "role": "bookkeeping and tax. / [phone redacted]. Owns BMI/Warner royalty worksheet, Sony data."
+        },
+        {
+          "name": "Harry Grewal CPA",
+          "org": "",
+          "role": "tax preparer at yourtaxteam.net. Owns the 2024 federal + CA returns and the $193K balance plan."
+        },
+        {
+          "name": "Sam @ yourtaxteam.net",
+          "org": "",
+          "role": "surfaced the $193K exposure on 2026-03-19. Same firm as Harry."
+        },
+        {
+          "name": "Helen Cohen",
+          "org": "Entertainment Management Inc.",
+          "role": ". Coordinator/manager."
+        },
+        {
+          "name": "Kevin E. O'Hearn, CLU ChFC",
+          "org": "",
+          "role": "financial advisor / brokerage account (Pershing clearing). 21800 Oxnard St Ste 800, Woodland Hills CA 91367. [phone redacted]. Client ID 0AJ. *Not pre"
+        },
+        {
+          "name": "Anika Chelin, Tim Meade, Karina Reyes-Parra",
+          "org": "Warner Chappell",
+          "role": "publishing-side contacts on m.A.A.d city correspondence."
+        },
+        {
+          "name": "Analise Narvaez",
+          "org": "WMG Royalties",
+          "role": ". Confirmed the 2026-03-02 ACH update."
+        },
+        {
+          "name": "WMG Royalties general",
+          "org": "",
+          "role": "."
+        }
+      ]
+    },
+    "infrastructure": {
+      "signals": [
+        "Google storage/payment risk",
+        "Google One payment risk",
+        "Wix Studio payment risk",
+        "GoDaddy parked-domain risk",
+        "Antares/plugin access risk",
+        "WeTransfer file-expiration risk",
+        "Blue Shield secure message risk"
+      ],
+      "source": "areas/infrastructure/email-and-storage.md",
+      "googleStatus": "blocked",
+      "googleDetail": "API enablement pending; see STATUS.md",
+      "quickbooksStatus": "blocked"
+    },
+    "system": {
+      "host": "Axlfolies-MBP.lan",
+      "model": "Mac16,5",
+      "os": "macOS 26.4.1",
+      "build": "25E253",
+      "kernel": "Darwin 25.4.0",
+      "arch": "arm64",
+      "cpu": "16 cores · Apple M4 Max",
+      "memory": "128 GB total · 72.6 GB free",
+      "disk": "1749.3 GB free / 3722 GB",
+      "uptime": "25d 8h",
+      "load": "5.43 / 4.73 / 3.83",
+      "refreshedAt": "2026-05-11T06:54:38.725Z"
+    },
+    "healthChecks": {
+      "generatedAt": "2026-05-11T06:54:38.725Z",
+      "safeMode": "no secret values captured; env checks are boolean/redacted",
+      "counts": {
+        "ok": 20,
+        "warn": 9,
+        "fail": 0,
+        "missing": 0
+      },
+      "overall": "warn",
+      "groups": [
+        {
+          "id": "agents",
+          "title": "Agent runtimes",
+          "checks": [
+            {
+              "id": "hermes-agent",
+              "name": "Hermes Agent",
+              "status": "ok",
+              "detail": "Hermes Agent v0.12.0 (2026.4.30)",
+              "evidence": "/Users/axlfoliem/.local/bin/hermes"
+            },
+            {
+              "id": "claude-code",
+              "name": "Claude Code",
+              "status": "ok",
+              "detail": "2.1.138 (Claude Code)",
+              "evidence": "/Users/axlfoliem/.local/bin/claude"
+            },
+            {
+              "id": "anthropic-api-env",
+              "name": "Anthropic API env",
+              "status": "warn",
+              "detail": "no env signals present in refresh shell",
+              "evidence": "ANTHROPIC_API_KEY:absent"
+            },
+            {
+              "id": "anthropic-sdk",
+              "name": "Anthropic SDK package",
+              "status": "ok",
+              "detail": "^0.95.1",
+              "evidence": "package.json dependencies"
+            }
+          ]
+        },
+        {
+          "id": "dashboard",
+          "title": "Dashboard app",
+          "checks": [
+            {
+              "id": "project-root",
+              "name": "Project root",
+              "status": "ok",
+              "detail": "root exists",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/"
+            },
+            {
+              "id": "data-generator",
+              "name": "Data generator",
+              "status": "ok",
+              "detail": "npm run refresh target present",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/scripts/build-data.mjs"
+            },
+            {
+              "id": "react-app",
+              "name": "React app",
+              "status": "ok",
+              "detail": "Network tab source present",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/src/App.jsx"
+            },
+            {
+              "id": "generated-state",
+              "name": "Generated state",
+              "status": "ok",
+              "detail": "state.json present",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/src/data/state.json"
+            },
+            {
+              "id": "node-modules",
+              "name": "Node modules",
+              "status": "ok",
+              "detail": "dependencies installed",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/node_modules"
+            },
+            {
+              "id": "scripts",
+              "name": "Package scripts",
+              "status": "ok",
+              "detail": "refresh · dev · build · foleybot",
+              "evidence": "package.json scripts"
+            }
+          ]
+        },
+        {
+          "id": "local-services",
+          "title": "Local services",
+          "checks": [
+            {
+              "id": "vite-dev-server",
+              "name": "Vite dev server",
+              "status": "warn",
+              "detail": "offline or not started",
+              "evidence": "http://127.0.0.1:5173/"
+            },
+            {
+              "id": "vite-preview",
+              "name": "Vite preview",
+              "status": "warn",
+              "detail": "offline or not started",
+              "evidence": "http://127.0.0.1:4173/"
+            },
+            {
+              "id": "foleybot-server",
+              "name": "Foleybot server",
+              "status": "ok",
+              "detail": "HTTP 405",
+              "evidence": "http://127.0.0.1:8787/chat"
+            },
+            {
+              "id": "foleybot-script",
+              "name": "Foleybot script",
+              "status": "ok",
+              "detail": "local Claude proxy script present",
+              "evidence": "/Users/axlfoliem/ax-l-mania-dashboard/scripts/foleybot-server.mjs"
+            },
+            {
+              "id": "foleybot-auth-env",
+              "name": "Foleybot auth env",
+              "status": "warn",
+              "detail": "no env signals present in refresh shell",
+              "evidence": "ANTHROPIC_API_KEY:absent · FOLEYBOT_MODEL:absent · FOLEYBOT_PORT:absent"
+            }
+          ]
+        },
+        {
+          "id": "vault",
+          "title": "Obsidian vault",
+          "checks": [
+            {
+              "id": "vault-source",
+              "name": "Vault source",
+              "status": "ok",
+              "detail": "ok",
+              "evidence": "/Users/axlfoliem/Documents/brain 2"
+            },
+            {
+              "id": "people-wiki",
+              "name": "People wiki",
+              "status": "warn",
+              "detail": "needs rewrite",
+              "evidence": "/Users/axlfoliem/Documents/brain 2/wiki/network/people.md"
+            },
+            {
+              "id": "agents-index",
+              "name": "Agents index",
+              "status": "ok",
+              "detail": "agent registry present",
+              "evidence": "/Users/axlfoliem/Documents/brain 2/agents/INDEX.md"
+            },
+            {
+              "id": "vault-inventory",
+              "name": "Vault inventory",
+              "status": "ok",
+              "detail": "5240 files · 2910 new in 7d",
+              "evidence": "filesystem walk; .obsidian and node_modules skipped"
+            }
+          ]
+        },
+        {
+          "id": "attached-apis",
+          "title": "Attached APIs",
+          "checks": [
+            {
+              "id": "spotify",
+              "name": "Spotify",
+              "status": "ok",
+              "detail": "snapshot",
+              "evidence": "data-sources/spotify/snapshot.json"
+            },
+            {
+              "id": "spotify-app-config",
+              "name": "Spotify app config",
+              "status": "ok",
+              "detail": "AX-L Mania Player · PKCE · secret not stored",
+              "evidence": "axlmania://auth-callback"
+            },
+            {
+              "id": "spotify-keychain-auth",
+              "name": "Spotify OAuth login",
+              "status": "ok",
+              "detail": "connected · macOS Keychain",
+              "evidence": "data-sources/spotify/auth-status.json + macOS Keychain"
+            },
+            {
+              "id": "spotify-env",
+              "name": "Spotify env",
+              "status": "warn",
+              "detail": "no env signals present in refresh shell",
+              "evidence": "SPOTIFY_CLIENT_ID:absent · SPOTIFY_CLIENT_SECRET:absent · SPOTIFY_REFRESH_TOKEN:absent"
+            },
+            {
+              "id": "google",
+              "name": "Google",
+              "status": "warn",
+              "detail": "API enablement pending; see STATUS.md",
+              "evidence": "data-sources/google/STATUS.md"
+            },
+            {
+              "id": "google-oauth-client",
+              "name": "Google OAuth client",
+              "status": "ok",
+              "detail": "desktop OAuth app present; secret not copied into dashboard state",
+              "evidence": "~/.google_workspace_mcp/client_secret.json presence only"
+            },
+            {
+              "id": "google-workspace-login",
+              "name": "Google Workspace login",
+              "status": "ok",
+              "detail": "local credential cache present",
+              "evidence": "~/.google_workspace_mcp/credentials presence only"
+            },
+            {
+              "id": "quickbooks",
+              "name": "QuickBooks",
+              "status": "warn",
+              "detail": "blocked",
+              "evidence": "data-sources/quickbooks/STATUS.md"
+            },
+            {
+              "id": "quickbooks-env",
+              "name": "QuickBooks env",
+              "status": "warn",
+              "detail": "no env signals present in refresh shell",
+              "evidence": "QUICKBOOKS_CLIENT_ID:absent · QUICKBOOKS_CLIENT_SECRET:absent · QUICKBOOKS_REFRESH_TOKEN:absent · QB_CLIENT_ID:absent · QB_CLIENT_SECRET:absent"
+            },
+            {
+              "id": "anthropic",
+              "name": "Anthropic",
+              "status": "ok",
+              "detail": "ok",
+              "evidence": "@anthropic-ai/sdk + ANTHROPIC_API_KEY boolean only"
+            }
+          ]
+        }
+      ]
+    },
+    "audienceAwaiting": {
+      "gmail": "Google Workspace login / snapshot refresh",
+      "peopleWiki": null
+    },
+    "conversionFunnel": {
+      "awaiting": false,
+      "pointer": "wiki/network/people.md",
+      "contacts": 15
+    }
+  },
+  "world": {
+    "news": {
+      "status": "live",
+      "fetchedAt": "2026-05-11T06:44:50.058Z",
+      "sourceCount": 3,
+      "itemCount": 6,
+      "items": [
+        {
+          "source": "BBC World",
+          "title": "Trump calls Iran response to US proposal to end war 'totally unacceptable'",
+          "url": "https://www.bbc.com/news/articles/clypgz9e5pmo?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Mon, 11 May 2026 01:55:13 GMT"
+        },
+        {
+          "source": "BBC World",
+          "title": "His father had just been buried. Then West Bank settlers forced him to dig up the body",
+          "url": "https://www.bbc.com/news/articles/cjrpnjpl39po?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Sun, 10 May 2026 19:56:45 GMT"
+        },
+        {
+          "source": "BBC World",
+          "title": "French national shows symptoms on return from hantavirus-hit ship",
+          "url": "https://www.bbc.com/news/articles/c3r2p70jdy7o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Mon, 11 May 2026 03:29:58 GMT"
+        },
+        {
+          "source": "BBC World",
+          "title": "Ailing Iran Nobel laureate given bail and hospital transfer",
+          "url": "https://www.bbc.com/news/articles/c1j257w87neo?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Mon, 11 May 2026 00:40:45 GMT"
+        },
+        {
+          "source": "BBC World",
+          "title": "Thailand's divisive ex-PM is out of jail, but is the Thaksin era over?",
+          "url": "https://www.bbc.com/news/articles/c99l1590kr0o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Mon, 11 May 2026 03:41:34 GMT"
+        },
+        {
+          "source": "BBC World",
+          "title": "Iran activists tell BBC how threat of war intensifies trauma of repression",
+          "url": "https://www.bbc.com/news/articles/c1m2ee3jxvro?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "Sun, 10 May 2026 21:01:17 GMT"
+        }
+      ],
+      "errors": [
+        {
+          "source": "Reuters Business",
+          "status": "warn",
+          "detail": "fetch failed"
+        }
+      ]
+    },
+    "cultural": [
+      {
+        "label": "Spotify presence",
+        "val": 60,
+        "note": "editorial playlist exists"
+      },
+      {
+        "label": "Brand search",
+        "val": 0,
+        "note": "AWAITING — Google Trends not wired"
+      },
+      {
+        "label": "Catalog visibility",
+        "val": 50,
+        "note": "depends on catalog wiki"
+      },
+      {
+        "label": "Domains health",
+        "val": 20,
+        "note": "URGENT #5"
+      }
+    ],
+    "anomalies": [
+      {
+        "label": "The \"Notice of Possible Legal Ac",
+        "value": "this week",
+        "level": "WATCH"
+      },
+      {
+        "label": "Gmail / Google One payment statu",
+        "value": "this week",
+        "level": "WATCH"
+      },
+      {
+        "label": "BMI / Warner royalty statements ",
+        "value": "this week",
+        "level": "WATCH"
+      },
+      {
+        "label": "The 90-day consolidation protoco",
+        "value": "2026-05-10",
+        "level": "CRITICAL"
+      },
+      {
+        "label": "Wix and GoDaddy infrastructure r",
+        "value": "this week",
+        "level": "WATCH"
+      }
+    ],
+    "sentimentIndex": 60
+  },
+  "inventory": {
+    "folders": {
+      "inbox": {
+        "rel": "inbox",
+        "files": 4,
+        "bytes": 872,
+        "mtimeMax": 1778224870823.6726
+      },
+      "raw": {
+        "rel": "raw",
+        "files": 2586,
+        "bytes": 6837646742,
+        "mtimeMax": 1778286443129.4824
+      },
+      "wiki": {
+        "rel": "wiki",
+        "files": 13,
+        "bytes": 47219,
+        "mtimeMax": 1778311398439.7896
+      },
+      "outputs": {
+        "rel": "outputs",
+        "files": 2583,
+        "bytes": 7742109,
+        "mtimeMax": 1778313440997.7808
+      },
+      "projects": {
+        "rel": "projects",
+        "files": 7,
+        "bytes": 25901,
+        "mtimeMax": 1778310784147.2136
+      },
+      "areas": {
+        "rel": "areas",
+        "files": 7,
+        "bytes": 7495,
+        "mtimeMax": 1778310113900.704
+      },
+      "resources": {
+        "rel": "resources",
+        "files": 5,
+        "bytes": 7826,
+        "mtimeMax": 1778254966154.7993
+      },
+      "daily": {
+        "rel": "daily",
+        "files": 2,
+        "bytes": 4233,
+        "mtimeMax": 1778240548195.6174
+      },
+      "archive": {
+        "rel": "archive",
+        "files": 10,
+        "bytes": 12720,
+        "mtimeMax": 1778472706305.369
+      },
+      "assets": {
+        "rel": "assets",
+        "files": 6,
+        "bytes": 2124555,
+        "mtimeMax": 1777684462595.834
+      },
+      "agents": {
+        "rel": "agents",
+        "files": 17,
+        "bytes": 39975,
+        "mtimeMax": 1778472857489.7473
+      }
+    },
+    "raw": {
+      "screenshots": {
+        "rel": "raw/screenshots",
+        "files": 103,
+        "bytes": 284427375,
+        "mtimeMax": 1778250764121.147
+      },
+      "ai-chats": {
+        "rel": "raw/ai-chats",
+        "files": 2400,
+        "bytes": 919667034,
+        "mtimeMax": 1778286443129.4824
+      },
+      "imports": {
+        "rel": "raw/imports",
+        "files": 61,
+        "bytes": 1616121606,
+        "mtimeMax": 1778280502173.4424
+      },
+      "transcripts": {
+        "rel": "raw/transcripts",
+        "files": 2,
+        "bytes": 18383,
+        "mtimeMax": 1778062193052.53
+      },
+      "videos": {
+        "rel": "raw/videos",
+        "files": 18,
+        "bytes": 3974132431,
+        "mtimeMax": 1778183369000
+      },
+      "audio": {
+        "rel": "raw/audio",
+        "files": 2,
+        "bytes": 43279913,
+        "mtimeMax": 1777941198000
+      },
+      "articles": {
+        "rel": "raw/articles",
+        "files": 0,
+        "bytes": 0,
+        "mtimeMax": 0
+      },
+      "references": {
+        "rel": "raw/references",
+        "files": 0,
+        "bytes": 0,
+        "mtimeMax": 0
+      }
+    },
+    "totalFiles": 5240,
+    "totalBytes": 6847659647,
+    "newWeek": 2910,
+    "synthesisGaps": [
+      {
+        "title": "What this vault is for, and what it is not for",
+        "file": "wiki/What this vault is for, and what it is not for.md",
+        "reason": "constitution — highest-leverage missing wiki note",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Music catalog",
+        "file": "wiki/music/catalog.md",
+        "reason": "every track, status, ownership, splits, masters, registrations",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Network / people",
+        "file": "wiki/network/people.md",
+        "reason": "top 30 relationships, last contact, what they're for",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Business state",
+        "file": "wiki/business/state.md",
+        "reason": "income sources, monthly burn, runway — required for allocator-grade decisions",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Agent governance",
+        "file": "wiki/Agent Governance.md",
+        "reason": "synthesis from chairman governance transcript",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "Claude Code + Obsidian workflow",
+        "file": "wiki/Claude Code + Obsidian Workflow.md",
+        "reason": "blocked behind transcription of May-5 screen recording",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      },
+      {
+        "title": "ASHLAND visual world",
+        "file": "wiki/ASHLAND visual world.md",
+        "reason": "promote-if-canon — currently a resource",
+        "exists": true,
+        "state": "ai-drafted-needs-rewrite"
+      }
+    ],
+    "projects": [
+      {
+        "file": "projects/Blender MCP Pipeline.md",
+        "title": "Blender MCP Pipeline",
+        "status": "Active",
+        "priority": null,
+        "updated": null
+      },
+      {
+        "file": "projects/IP-Defense.md",
+        "title": "IP Defense — m.A.A.d city legal matter + BMI/Warner royalty integrity",
+        "status": "active",
+        "priority": "highest",
+        "updated": "2026-05-07"
+      },
+      {
+        "file": "projects/Music Catalog Inventory.md",
+        "title": "Music Catalog Inventory",
+        "status": "active",
+        "priority": null,
+        "updated": "2026-05-08"
+      },
+      {
+        "file": "projects/Productize One Asset.md",
+        "title": "Productize One Asset",
+        "status": "Not started. Block on this until v1 exists.",
+        "priority": null,
+        "updated": null
+      },
+      {
+        "file": "projects/RESURRECTION Release.md",
+        "title": "RESURRECTION Release",
+        "status": "active",
+        "priority": null,
+        "updated": "2026-05-08"
+      },
+      {
+        "file": "projects/Second Brain Full Raw Ingestion.md",
+        "title": "Second Brain Full Raw Ingestion",
+        "status": "extraction-complete",
+        "priority": null,
+        "updated": "2026-05-08"
+      },
+      {
+        "file": "projects/first-paid-offer.md",
+        "title": "First Paid Offer",
+        "status": "active — unfilled",
+        "priority": null,
+        "updated": null
+      }
+    ],
+    "areas": [
+      {
+        "file": "areas/AI Capture and Information Defaults.md",
+        "title": "AI Capture and Information Defaults"
+      }
+    ],
+    "wikiNotes": [
+      "wiki/ASHLAND visual world.md",
+      "wiki/Agent Governance.md",
+      "wiki/Claude Code + Obsidian Workflow.md",
+      "wiki/Folder Rules.md",
+      "wiki/Novitckii Second Brain System.md",
+      "wiki/Reading Queue.md",
+      "wiki/What I Extract From Solo-Business and AI Content.md",
+      "wiki/What this vault is for, and what it is not for.md",
+      "wiki/_GAPS.md",
+      "wiki/books/play-bigger.md",
+      "wiki/business/state.md",
+      "wiki/music/catalog.md",
+      "wiki/network/people.md"
+    ],
+    "processingQueue": [
+      {
+        "n": 1,
+        "title": "May 5 screen-recording audio"
+      },
+      {
+        "n": 2,
+        "title": "May 5–6 screenshot clusters"
+      },
+      {
+        "n": 3,
+        "title": "ChatGPT voice-mode audio files"
+      },
+      {
+        "n": 4,
+        "title": "ChatGPT conversation markdown corpus"
+      }
+    ],
+    "urgentItems": [
+      {
+        "n": 1,
+        "title": "The \"Notice of Possible Legal Action (m.A.A.d city)\" email",
+        "deadline": "this week",
+        "level": "WATCH"
+      },
+      {
+        "n": 2,
+        "title": "Gmail / Google One payment status",
+        "deadline": "this week",
+        "level": "WATCH"
+      },
+      {
+        "n": 3,
+        "title": "BMI / Warner royalty statements (Kimie Aryai)",
+        "deadline": "this week",
+        "level": "WATCH"
+      },
+      {
+        "n": 4,
+        "title": "The 90-day consolidation protocol",
+        "deadline": "2026-05-10",
+        "level": "CRITICAL"
+      },
+      {
+        "n": 5,
+        "title": "Wix and GoDaddy infrastructure rot",
+        "deadline": "this week",
+        "level": "WATCH"
+      }
+    ]
+  }
+}

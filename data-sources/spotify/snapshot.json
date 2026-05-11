@@ -1,0 +1,40 @@
+{
+  "fetchedAt": "2026-05-08",
+  "fetchedBy": "claude-code",
+  "artist": {
+    "name": "Axlfolie",
+    "uri": "spotify:artist:0sIAaocqA1M3h5zegadwFx",
+    "url": "https://open.spotify.com/artist/0sIAaocqA1M3h5zegadwFx",
+    "image": "https://i.scdn.co/image/ab676161000051745cff6c7e098880ce1901ca23"
+  },
+  "curatedPlaylists": [
+    {
+      "name": "Written By Axlfolie",
+      "curator": "Spotify",
+      "uri": "spotify:playlist:37i9dQZF1EFzuKgiTjBm2x",
+      "url": "https://open.spotify.com/playlist/37i9dQZF1EFzuKgiTjBm2x",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab676d630000e1f0c68b3edec26dbc9ab4bc4ba4",
+      "note": "Spotify-editorial. Existence of an editorial \"Written By\" playlist is itself a signal — write more, push for refresh."
+    }
+  ],
+  "tracksDeepFetch": {
+    "status": "blocked",
+    "reason": "spotify token expired between search and fetch_tracks; refresh token via Claude.ai Spotify connector and rerun npm run refresh"
+  },
+  "topTracksFromVaultEPK": [
+    "SOONER OR LATER",
+    "When I Die feat. Axlfolie",
+    "MUTT",
+    "Late Summers",
+    "New Wave"
+  ],
+  "credits": [
+    "Kendrick Lamar — m.A.A.d city (2012)",
+    "Nipsey Hussle",
+    "Leon Thomas",
+    "Ab-Soul",
+    "Buddy",
+    "ScHoolboy Q",
+    "Drake"
+  ]
+}
