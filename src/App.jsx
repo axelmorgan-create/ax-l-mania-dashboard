@@ -373,13 +373,15 @@ const fetchRedditWorldNews = async () => {
 const TWELVE_DATA_SYMBOLS = [
   { symbol: "SPY", name: "S&P 500" },
   { symbol: "QQQ", name: "Nasdaq 100" },
-  { symbol: "VIX", name: "Volatility" },
-  { symbol: "DXY", name: "Dollar Idx" },
+  { symbol: "VIXY", name: "Volatility" },
+  { symbol: "UUP", name: "Dollar Idx" },
   { symbol: "BTC/USD", name: "Bitcoin" },
   { symbol: "ETH/USD", name: "Ethereum" },
   { symbol: "USD/JPY", name: "Yen" },
   { symbol: "XAU/USD", name: "Gold" }
 ];
+
+const TWELVE_DATA_MONETARY = new Set(["SPY", "QQQ", "VIXY", "UUP"]);
 
 const fetchTwelveDataMarkets = async () => {
   const apiKey = import.meta.env.VITE_TWELVE_DATA_KEY;
@@ -389,10 +391,14 @@ const fetchTwelveDataMarkets = async () => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`TwelveData ${res.status}`);
   const json = await res.json();
+  if (json && json.status === "error") {
+    if (json.code === 429) throw new Error("RATE LIMIT · free tier 8/min");
+    throw new Error(`TwelveData ${json.code || ""} ${json.message || "error"}`.trim());
+  }
   return TWELVE_DATA_SYMBOLS.map(({ symbol, name }) => {
     const row = json[symbol] || {};
     if (row.code && row.code >= 400) {
-      return { symbol, name, value: "—", delta: "" };
+      return { symbol, name, value: "—", delta: "", err: row.message || `code ${row.code}` };
     }
     const price = parseFloat(row.close);
     const pctChange = parseFloat(row.percent_change);
@@ -406,7 +412,7 @@ const fetchTwelveDataMarkets = async () => {
     } else {
       formatted = price.toFixed(price >= 10 ? 2 : 4);
     }
-    const isMonetary = symbol === "SPY" || symbol === "QQQ" || symbol.startsWith("BTC") || symbol.startsWith("ETH") || symbol.startsWith("XAU");
+    const isMonetary = TWELVE_DATA_MONETARY.has(symbol) || symbol.startsWith("BTC") || symbol.startsWith("ETH") || symbol.startsWith("XAU");
     const value = formatted === "—" ? "—" : isMonetary ? `$${formatted}` : formatted;
     const delta = Number.isNaN(pctChange) ? "" : `${pctChange >= 0 ? "+" : ""}${pctChange.toFixed(2)}%`;
     return { symbol, name, value, delta };
@@ -1598,18 +1604,22 @@ const HomeHubView = ({ theme }) => (
     <div className="w-full md:w-[38%] flex flex-col gap-4 z-30 h-full">
       <Panel title="NORTH STARS" jpTitle="ドメイン" theme={theme}>
         <div className="space-y-2">
-          {DATA.northStars.map((item) => (
-            <div key={item.domain}>
-              <KV
-                k={`${item.domain} / ${item.metric}`}
-                v={`${item.value} · ${item.type}`}
-                green={item.type === "leading" && item.value !== "MISSING"}
-                alert={item.value === "MISSING" || item.type === "control"}
-                theme={theme}
-              />
-              {item.awaiting && <AwaitingCapture pointer={item.awaiting} theme={theme} compact />}
-            </div>
-          ))}
+          {(DATA.northStars || []).length === 0 ? (
+            <AwaitingCapture pointer="wiki/north-stars.md" note="No north stars defined yet. Author them or run npm refresh." theme={theme} />
+          ) : (
+            DATA.northStars.map((item) => (
+              <div key={item.domain}>
+                <KV
+                  k={`${item.domain} / ${item.metric}`}
+                  v={`${item.value} · ${item.type}`}
+                  green={item.type === "leading" && item.value !== "MISSING"}
+                  alert={item.value === "MISSING" || item.type === "control"}
+                  theme={theme}
+                />
+                {item.awaiting && <AwaitingCapture pointer={item.awaiting} theme={theme} compact />}
+              </div>
+            ))
+          )}
         </div>
       </Panel>
 
@@ -1648,12 +1658,18 @@ const HomeHubView = ({ theme }) => (
         </div>
       </Panel>
       <Panel title="VAULT OUTPUT" jpTitle="capture > synthesis" theme={theme} className="col-span-2">
-        <div className="grid grid-cols-4 gap-2 mb-3">
-          {DATA.content.kpis.map(([label, value, delta]) => (
-            <MiniKpi key={label} label={label} value={value} delta={delta} theme={theme} />
-          ))}
-        </div>
-        <DataTable rows={DATA.content.economics} theme={theme} />
+        {((DATA.content?.kpis || []).length === 0 && (DATA.content?.economics || []).length === 0) ? (
+          <AwaitingCapture pointer="wiki/business/state.md" note="Vault output economics not captured — author or run npm refresh." theme={theme} />
+        ) : (
+          <>
+            <div className="grid grid-cols-4 gap-2 mb-3">
+              {(DATA.content?.kpis || []).map(([label, value, delta]) => (
+                <MiniKpi key={label} label={label} value={value} delta={delta} theme={theme} />
+              ))}
+            </div>
+            <DataTable rows={DATA.content?.economics || []} theme={theme} />
+          </>
+        )}
       </Panel>
     </div>
   </motion.div>
@@ -1667,6 +1683,7 @@ const SecondBrainView = ({ theme }) => {
   // Capture vs synthesis ratio (raw size vs synth size, log-scaled into 0..100)
   const memo = DATA.brain.memoryAllocation || {};
   const research = memo.research || [];
+  const inventoryOk = Boolean(DATA.inventory && typeof DATA.inventory.totalFiles === "number");
   return (
     <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full relative p-2 md:p-4">
       <div className="md:col-span-3 flex flex-col gap-4 z-30">
@@ -1692,9 +1709,15 @@ const SecondBrainView = ({ theme }) => {
       <div className="md:col-span-5 flex flex-col gap-4 z-30">
         <Panel title="MELCHIOR CORE" jpTitle="マギシステム" theme={theme} className="h-64 overflow-hidden">
           <div className="absolute top-2 left-2 text-[9px] font-tech font-bold opacity-60 z-20">
-            VAULT FILES: {DATA.inventory?.totalFiles ?? "—"}
-            <br />
-            7-DAY DELTA: +{DATA.inventory?.newWeek ?? "—"}
+            {inventoryOk ? (
+              <>
+                VAULT FILES: {DATA.inventory.totalFiles}
+                <br />
+                7-DAY DELTA: +{DATA.inventory.newWeek}
+              </>
+            ) : (
+              <span style={{ color: "#FF7777" }}>INVENTORY OFFLINE · run npm refresh</span>
+            )}
           </div>
           <Magi3DCore theme={theme} />
         </Panel>
@@ -1830,6 +1853,7 @@ const NetworkOpsView = ({ theme }) => {
   const alerts = DATA.network.alerts || [];
   const people = DATA.network.people || {};
   const infra = DATA.network.infrastructure || {};
+  const inventoryAvailable = Boolean(DATA.inventory && DATA.inventory.processingQueue);
   return (
     <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full relative p-2 md:p-4">
       <div className="md:col-span-4 flex flex-col gap-4 z-30">
@@ -1884,9 +1908,17 @@ const NetworkOpsView = ({ theme }) => {
           ))}
           {(!DATA.network.risks || DATA.network.risks.length === 0) && <AwaitingCapture pointer="outputs/chatgpt-deep-dive/URGENT.md" theme={theme} />}
         </Panel>
-        <Panel title="PROCESSING QUEUE" jpTitle="raw/imports" theme={theme}>
-          {(DATA.inventory?.processingQueue || []).slice(0, 4).map((q) => <KV key={q.n} k={`#${q.n}`} v={q.title.slice(0, 36)} theme={theme} />)}
-          {(DATA.inventory?.processingQueue || []).length === 0 && <AwaitingCapture pointer="raw/imports/PROCESSING_QUEUE.md" theme={theme} />}
+        <Panel title="PROCESSING QUEUE" jpTitle={inventoryAvailable ? "raw/imports" : "inventory offline"} theme={theme}>
+          {!inventoryAvailable ? (
+            <div className="font-tech text-[10px] border-l-2 pl-2 py-1" style={{ color: "#FF7777", borderColor: "#FF2200" }}>
+              Inventory snapshot missing — run `npm run refresh`.
+            </div>
+          ) : (
+            <>
+              {DATA.inventory.processingQueue.slice(0, 4).map((q) => <KV key={q.n} k={`#${q.n}`} v={q.title.slice(0, 36)} theme={theme} />)}
+              {DATA.inventory.processingQueue.length === 0 && <AwaitingCapture pointer="raw/imports/PROCESSING_QUEUE.md" theme={theme} />}
+            </>
+          )}
         </Panel>
         <Panel title="CONVERSION FUNNEL" theme={theme}>
           {DATA.network.conversionFunnel?.awaiting ? (
@@ -2112,10 +2144,10 @@ const BreakingTicker = ({ theme }) => {
   return (
     <div className="cyber-panel-wrap p-[1px] relative overflow-hidden pointer-events-auto" style={{ backgroundColor: `${theme.hex}50` }}>
       <div className="flex items-stretch bg-black/70 backdrop-blur-md">
-        <div className="flex items-center gap-2 px-3 border-r" style={{ borderColor: `${theme.hex}40`, color: theme.hex }}>
+        <div className="flex items-center gap-2 px-3 border-r" style={{ borderColor: `${theme.hex}40`, color: theme.hex }} title={error ? `Reddit fetch failed: ${error}` : ""}>
           <span className="w-1.5 h-1.5 bg-[#FF2200] animate-pulse" />
-          <span className="font-display font-bold text-[10px] tracking-[0.32em]">
-            {error ? "OFFLINE" : data ? "LIVE · r/worldnews" : "TUNING…"}
+          <span className="font-display font-bold text-[10px] tracking-[0.32em]" style={error ? { color: "#FF7777" } : undefined}>
+            {error ? `OFFLINE · r/worldnews` : data ? "LIVE · r/worldnews" : "TUNING…"}
           </span>
         </div>
         <div className="relative flex-grow overflow-hidden h-8">
@@ -2255,12 +2287,21 @@ const RecentEventsPanel = ({ theme, events }) => {
 };
 
 const FinanceRadarPanel = ({ theme }) => {
-  const { data: ticks } = useLiveData(fetchTwelveDataMarkets, 5 * 60 * 1000);
+  const { data: ticks, error, updatedAt } = useLiveData(fetchTwelveDataMarkets, 5 * 60 * 1000);
   const rows = ticks || [];
+  const statusLabel = error
+    ? `OFFLINE · ${error}`
+    : ticks
+    ? `LIVE · ${updatedAt ? new Date(updatedAt).toTimeString().slice(0, 5) : ""}`
+    : "TUNING…";
   return (
-    <Panel title="FINANCE RADAR" jpTitle="Twelve Data" theme={theme}>
+    <Panel title="FINANCE RADAR" jpTitle={statusLabel} theme={theme}>
       <div className="grid grid-cols-4 gap-1.5 mt-1">
-        {rows.length === 0 ? (
+        {error && rows.length === 0 ? (
+          <div className="col-span-4 font-tech text-[10px] py-2 border-l-2 pl-2" style={{ color: "#FF7777", borderColor: "#FF2200" }}>
+            Twelve Data error: {error}. Free tier limits at 8 req/min · retrying in 5 min.
+          </div>
+        ) : rows.length === 0 ? (
           <div className="col-span-4 font-tech text-[10px] opacity-60 py-2" style={{ color: theme.hex }}>
             Tuning markets…
           </div>
@@ -2331,8 +2372,15 @@ const WorldView = ({ theme }) => {
           <Panel title="GLOBE OF SIGNALS" jpTitle="live pin field" theme={theme} className="h-72">
             <div className="relative flex-grow">
               <WorldGlobeStage theme={theme} events={events} activeLayers={activeLayers} onHover={setHoveredEvent} />
-              <div className="absolute top-0 left-0 font-tech text-[8px] tracking-[0.28em] opacity-70 pointer-events-none" style={{ color: theme.hex }}>
-                {usgsError && eonetError ? "FEED OFFLINE" : `LIVE · ${liveCount} SIGNALS`}
+              <div className="absolute top-0 left-0 font-tech text-[8px] tracking-[0.28em] pointer-events-none flex flex-col gap-0.5" style={{ color: theme.hex }}>
+                <span className="opacity-70">
+                  {usgsError && eonetError ? "ALL FEEDS OFFLINE" : `LIVE · ${liveCount} SIGNALS`}
+                </span>
+                {(usgsError || eonetError) && (usgsError ? !eonetError : eonetError) && (
+                  <span className="opacity-90" style={{ color: "#FF7777" }}>
+                    {usgsError ? "USGS DOWN" : "EONET DOWN"}
+                  </span>
+                )}
               </div>
               <div className="absolute top-0 right-0 font-tech text-[8px] tracking-[0.28em] opacity-70 text-right pointer-events-none" style={{ color: theme.hex }}>
                 IDX {sentiment}
@@ -2555,6 +2603,8 @@ const MusicView = ({ theme }) => {
     </div>
   );
 
+  const needsReauth = Boolean(spotifyError && /401|expired|token|unauthor/i.test(spotifyError));
+
   return (
     <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="flex flex-col h-full relative p-2 md:p-4 z-30 pointer-events-auto overflow-y-auto">
       <div className="mb-4 max-w-6xl">
@@ -2562,6 +2612,26 @@ const MusicView = ({ theme }) => {
         <div className="font-display text-4xl md:text-6xl leading-none mt-1 text-white">MUSIC OS</div>
         <div className="font-tech text-[11px] max-w-2xl mt-2 leading-relaxed opacity-75" style={{ color: "#d0d6e0" }}>{music.goal}</div>
       </div>
+
+      {spotifyError && (
+        <div className="mb-3 max-w-6xl rounded-xl border px-3 py-2 flex items-center justify-between gap-3" style={{ borderColor: "#FF2200", background: "rgba(255,34,0,.08)" }}>
+          <div className="font-tech text-[11px]" style={{ color: "#FF7777" }}>
+            <span className="font-bold tracking-[0.18em] uppercase">Spotify · </span>
+            {needsReauth ? "auth expired — reconnect to restore playback control." : spotifyError}
+          </div>
+          {needsReauth && (
+            <button
+              type="button"
+              onClick={connectSpotify}
+              disabled={spotifyConnecting}
+              className="shrink-0 rounded-full border px-3 py-1 font-tech text-[10px] uppercase tracking-[0.18em] hover:bg-white/10 disabled:opacity-50"
+              style={{ borderColor: "#FF7777", color: "#FF7777" }}
+            >
+              {spotifyConnecting ? "opening…" : "re-auth"}
+            </button>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 max-w-6xl mb-4">
         {(music.kpis || []).map((item) => <MetricTile key={item.label} item={item} />)}
