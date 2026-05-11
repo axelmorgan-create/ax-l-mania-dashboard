@@ -2611,7 +2611,7 @@ const MusicView = ({ theme }) => {
   const needsReauth = Boolean(spotifyError && /401|expired|token|unauthor/i.test(spotifyError));
 
   return (
-    <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="flex flex-col h-full relative p-2 md:p-4 z-30 pointer-events-auto overflow-y-auto">
+    <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="flex flex-col h-full relative p-2 md:p-4 z-30 pointer-events-auto overflow-y-auto scrollbar-hide">
       <div className="mb-4 max-w-6xl">
         <div className="font-tech text-[10px] uppercase tracking-[0.35em] opacity-70" style={{ color: theme.hex }}>producer command center</div>
         <div className="font-display text-4xl md:text-6xl leading-none mt-1 text-white">MUSIC OS</div>
