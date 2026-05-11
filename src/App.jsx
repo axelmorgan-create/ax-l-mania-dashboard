@@ -3,6 +3,11 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import * as THREE from "three";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+// Vite production builds break Mapbox's default blob-URL worker with
+// "import.meta outside a module". The CSP-friendly worker, imported via
+// Vite's ?worker, is bundled correctly for production.
+import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker?worker";
+mapboxgl.workerClass = MapboxWorker;
 import {
   AlertTriangle,
   Box,

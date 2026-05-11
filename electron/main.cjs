@@ -66,7 +66,9 @@ function startProductionServer() {
       }
     });
     server.on("error", reject);
-    server.listen(0, "127.0.0.1", () => resolve(server.address().port));
+    // Fixed port (not 0/random) so external services with origin allowlists
+    // (e.g. Mapbox token URL restrictions) work across launches.
+    server.listen(51731, "127.0.0.1", () => resolve(server.address().port));
   });
 }
 
@@ -478,6 +480,16 @@ function createWindow() {
   } else {
     mainWindow.loadURL(`http://127.0.0.1:${prodServerPort}/`);
   }
+
+  // Cmd/Ctrl+Opt+I toggles DevTools in production too — needed to diagnose
+  // network/CSP issues without rebuilding.
+  mainWindow.webContents.on("before-input-event", (event, input) => {
+    const mod = process.platform === "darwin" ? input.meta : input.control;
+    if (mod && input.alt && input.key.toLowerCase() === "i") {
+      mainWindow.webContents.toggleDevTools();
+      event.preventDefault();
+    }
+  });
 
   mainWindow.once("ready-to-show", () => mainWindow.show());
 
