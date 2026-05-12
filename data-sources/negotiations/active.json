@@ -1,0 +1,221 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "Gmail thread digest 2026-05-11 (11 JJ Lord threads + active matters)",
+  "negotiations": [
+    {
+      "id": "maad-city-brewer",
+      "title": "m.A.A.d city / Brewer matter",
+      "subtitle": "INDEMNITY NOTICE served · Brewer alleges infringement · WCM pushing liability to user",
+      "leadSingle": "Notice of Indemnity served 2025-11-14",
+      "leadSingleDropDate": "litigation may be imminent",
+      "label": "Warner Chappell Legal & Business Affairs",
+      "userCounsel": { "name": "Jay-Jay Lord", "firm": "AltView Law Group", "email": "jlord@altviewlawgroup.com" },
+      "counterpartyCounsel": { "name": "Jonathan Pink (et al.)", "firm": "Lewis Brisbois", "email": "" },
+      "wcmContacts": [
+        { "name": "Karina Reyes-Parra", "role": "Admin Assistant, L&BA", "email": "karina.reyes-parra@warnerchappell.com" },
+        { "name": "Anika Chelin", "email": "anika.chelin@warnerchappell.com" },
+        { "name": "Tim Meade", "email": "tim.meade@warnerchappell.com" },
+        { "name": "Ryan Press", "email": "ryan.press@warnerchappell.com" },
+        { "name": "Chris Head", "email": "chris.head@warnerchappell.com" }
+      ],
+      "ballInCourt": "them",
+      "lastResponseFromThem": "2026-04-29",
+      "daysSinceLastResponse": 12,
+      "lastSentByUs": "2026-05-08",
+      "negotiationStartedAt": "2025-11-14",
+      "totalMessages": 1,
+      "urgency": "HIGH",
+      "outstandingItems": [
+        "Personal exposure assessment (named in filing or aimed at Sony/Warner?)",
+        "Splits picture audit",
+        "Posture: joint defense with WCM or independent counsel?",
+        "Settlement conversation status",
+        "Preservation hold on emails/sessions/files?"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19e06f8445096cb2",
+      "actionForUser": "Wait for Jay-Jay's call response. Escalate if no reply by 2026-05-15. WCM indemnity = user owes legal cost / damages even though WCM owns the catalog now."
+    },
+    {
+      "id": "lawson-poison-rca",
+      "title": "LAWSON LP — \"Poison\" via RCA / Sony",
+      "subtitle": "you produced music bed · sample clearance + paperwork pending",
+      "leadSingle": "Poison",
+      "leadSingleDropDate": "TBD (LP forthcoming)",
+      "label": "RCA Records / Sony Music Entertainment",
+      "userCounsel": { "name": "Jay-Jay Lord", "firm": "AltView Law Group", "email": "jlord@altviewlawgroup.com" },
+      "counterpartyCounsel": { "name": "Victoria Seagriff", "firm": "Sony Music A&R Administration", "email": "victoria.seagriff@rcarecords.com", "associates": "Shannon Vestecka, Daniel Schultz, Kaleena Arbuco" },
+      "ballInCourt": "them",
+      "lastResponseFromThem": "2026-03-25",
+      "daysSinceLastResponse": 47,
+      "lastSentByUs": "2026-03-24 (Jay-Jay introduced as counsel)",
+      "negotiationStartedAt": "2026-02-23",
+      "totalMessages": 11,
+      "urgency": "MEDIUM",
+      "outstandingItems": [
+        "Producer agreement paperwork from Lawson's side (pending)",
+        "Confirm filtered vocal chop at 0:06 origin (already confirmed: original)",
+        "Lawson's attorney looped in 2026-03-25 — should engage with Jay-Jay"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19c8b788d373e9fa",
+      "actionForUser": "Jay-Jay should nudge Victoria for paperwork status. Lawson is a separate active production credit."
+    },
+    {
+      "id": "nipsey-bino-prolific",
+      "title": "Nipsey & Bino — MIXTAPE (\"PROLIFIC\")",
+      "leadSingle": "SACRIFICES f/ James Fauntleroy",
+      "leadSingleDropDate": "2026-05-29",
+      "albumDropDate": "TBD",
+      "label": "Atlantic (WMG)",
+      "tracksProduced": 9,
+      "trackList": [
+        "Sacrifices (#2)",
+        "Make Believe (#4)",
+        "Count On You (#5)",
+        "Miami Off The Plane (#6)",
+        "Just Like Me Interlude (#7)",
+        "Just Like Me (#8)",
+        "Situations (#10)",
+        "Mean It (#12)",
+        "Bacc of the Bach (#15)"
+      ],
+      "moneySong": "Count On You",
+      "userCounsel": {
+        "name": "Jay-Jay Lord",
+        "firm": "AltView Law Group",
+        "email": "jlord@altviewlawgroup.com",
+        "altEmail": "jlord@jlivlaw.com",
+        "associate": "Veronica Hartling (veronica@altviewlawgroup.com)"
+      },
+      "counterpartyCounsel": {
+        "name": "Robin Frank",
+        "firm": "Sedlmayr & Associates, P.C.",
+        "email": "robin@saentlaw.com",
+        "associate": "Darien Schwartz (darien@saentlaw.com)"
+      },
+      "marathonAgency": {
+        "name": "Steve Carless",
+        "email": "steve@themarathonagency.com"
+      },
+      "ballInCourt": "them",
+      "lastResponseFromThem": "2026-04-14",
+      "daysSinceLastResponse": 27,
+      "lastSentByUs": "2026-05-11",
+      "negotiationStartedAt": "2026-02-10",
+      "totalMessages": 38,
+      "urgency": "HIGH",
+      "sacrificesTerms": {
+        "advance": 6250,
+        "advanceFormatted": "$6,250",
+        "royaltyPercent": "1.0% PPD",
+        "publishingShare": "12.5% pre-sample / 8.33% post-sample",
+        "coProducers": ["Mike", "Keys", "Niz", "Amaire Johnson"],
+        "sample": {
+          "song": "No More I Love You's",
+          "artist": "Annie Lennox",
+          "fee": 2500,
+          "compositionShare": "33.33%"
+        }
+      },
+      "outstandingItems": [
+        "Robin to send terms confirmation for the other 8 cuts (requested 2026-05-11)",
+        "Confirm BMI/Warner registration handling for PROLIFIC tracks",
+        "Verify Just Like Me Interlude has its own line / fee in producer agreement"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19c489de26963e83",
+      "actionForUser": "Wait for Robin Frank reply. If no response by 2026-05-14 (Thursday), Jay-Jay should escalate."
+    },
+    {
+      "id": "wcm-bank-info",
+      "title": "WCM Bank Info Update",
+      "subtitle": "payments held until ACH form returned",
+      "leadSingle": "ACH/wire form (WIRE Form V 5.0 003 v2.pdf)",
+      "leadSingleDropDate": "n/a",
+      "label": "Warner Chappell Royalties Payables",
+      "userCounsel": { "name": "Jay-Jay Lord", "firm": "AltView Law Group", "email": "jlord@altviewlawgroup.com" },
+      "counterpartyCounsel": { "name": "Dustin / Katie Kivinski", "firm": "WCM Royalties Support", "email": "usroyalties@warnerchappell.zendesk.com" },
+      "ballInCourt": "us",
+      "lastResponseFromThem": "2026-04-17",
+      "daysSinceLastResponse": 24,
+      "negotiationStartedAt": "2026-02-24",
+      "totalMessages": 10,
+      "urgency": "MEDIUM",
+      "outstandingItems": [
+        "Complete ACH form and return to WCM",
+        "Confirm new bank info accepted",
+        "Verify held payments release after change processes"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19c92872e9a6dc52",
+      "actionForUser": "Open the ACH form attachment, fill it out, return to usroyalties@warnerchappell.zendesk.com. Held payments resume after."
+    },
+    {
+      "id": "cut-mgmt-buyer-pitch",
+      "title": "Cut Management catalog buyer pitch",
+      "subtitle": "broker pitching catalog sale (2nd potential)",
+      "leadSingle": "Liam Boatsmith pitching",
+      "leadSingleDropDate": "n/a",
+      "label": "Cut Management (broker)",
+      "userCounsel": { "name": "Jay-Jay Lord (cc'd)", "firm": "AltView Law Group", "email": "jlord@altviewlawgroup.com" },
+      "counterpartyCounsel": { "name": "Liam Boatsmith", "firm": "Cut Management A&R", "email": "liam@cutmgmt.com" },
+      "ballInCourt": "us",
+      "lastResponseFromThem": "2026-05-04",
+      "daysSinceLastResponse": 7,
+      "lastSentByUs": "2026-04-29 (forward to JJ)",
+      "negotiationStartedAt": "2026-04-29",
+      "totalMessages": 4,
+      "urgency": "MEDIUM",
+      "outstandingItems": [
+        "Decide engage vs decline (3 follow-ups in queue)",
+        "Get Jay-Jay's read on broker fit",
+        "Check Cut Mgmt track record claims (Bieber, Nicky Jam)"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19dda84a1c4eff3a",
+      "actionForUser": "Reply yes/no this week so the lead doesn't go cold OR get used as leverage by another buyer."
+    },
+    {
+      "id": "sony-music-2019-2023",
+      "title": "Sony Music 2019–2023 statements review",
+      "subtitle": "Kimie Aryai (EA) delivered 3.6MB PDF",
+      "leadSingle": "Sony Music 2019-2023.pdf",
+      "leadSingleDropDate": "n/a",
+      "label": "Kimie Aryai EA + Jay-Jay review",
+      "userCounsel": { "name": "Jay-Jay Lord", "firm": "AltView Law Group", "email": "jlord@altviewlawgroup.com" },
+      "counterpartyCounsel": { "name": "Kimie Aryai, EA", "firm": "Independent EA", "email": "kimiearyaiea@gmail.com" },
+      "ballInCourt": "them",
+      "lastResponseFromThem": "2026-03-25",
+      "daysSinceLastResponse": 47,
+      "lastSentByUs": "2026-04-11 (forward to JJ)",
+      "negotiationStartedAt": "2026-03-25",
+      "totalMessages": 2,
+      "urgency": "MEDIUM",
+      "outstandingItems": [
+        "Jay-Jay to review Sony Music 2019-2023 royalty statements",
+        "Identify any underreporting / missing splits",
+        "Decide audit vs accept"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19d265535caf375b",
+      "actionForUser": "Nudge Jay-Jay for review status. Tied to URGENT item #3 (BMI / Warner / Kimie Aryai royalty review)."
+    },
+    {
+      "id": "jliv-billing",
+      "title": "JLIV Services unpaid bills",
+      "subtitle": "lawyer's invoices owed",
+      "leadSingle": "Bill 198 ($700.38) + Bill 206 ($1,018.84)",
+      "leadSingleDropDate": "n/a",
+      "label": "Jay-Jay Lord / JLIV Services Inc",
+      "userCounsel": { "name": "(self)", "firm": "", "email": "" },
+      "counterpartyCounsel": { "name": "Jay-Jay Lord", "firm": "JLIV Services Inc", "email": "jlord@jlivlaw.com" },
+      "ballInCourt": "us",
+      "lastResponseFromThem": "2026-05-03",
+      "daysSinceLastResponse": 8,
+      "negotiationStartedAt": "2026-04-18",
+      "totalMessages": 2,
+      "urgency": "ADMIN",
+      "outstandingItems": [
+        "Pay $1,719.22 total via Clio link",
+        "Or arrange payment plan with Jay-Jay"
+      ],
+      "threadUrl": "https://mail.google.com/mail/u/0/#all/19def7fc5f78b375",
+      "actionForUser": "Pay invoice. Don't let lawyer billing sit while you have an active potential lawsuit (Brewer matter)."
+    }
+  ]
+}

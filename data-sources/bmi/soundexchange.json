@@ -1,0 +1,23 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "SoundExchange 1099-MISC 2025 + user disclosure",
+  "registration": {
+    "accountNumber": "2177611778",
+    "registeredAs": "Axel Morgan, D/B/A Mr. Morgan Productions",
+    "address": "4922 Maymont Dr, View Park CA 90043",
+    "status": "ACTIVE",
+    "payerEntity": "SoundExchange, Inc.",
+    "payerAddress": "733 10th Street NW, 10th Floor, Washington DC 20001",
+    "payerEIN": "76-0742496",
+    "payerPhone": "800-961-2091",
+    "portalUrl": "https://www.soundexchange.com"
+  },
+  "annualRoyalties": [
+    { "year": 2025, "royalties": 248.36, "fedTaxWithheld": 0, "form": "1099-MISC", "boxCategory": "Box 2 Royalties" }
+  ],
+  "summary": {
+    "lastYearTotal": 248.36,
+    "lastYearTotalFormatted": "$248.36",
+    "note": "SoundExchange = neighboring rights for non-interactive streaming (Pandora, SiriusXM, internet radio). Small income stream but real and paid annually."
+  }
+}

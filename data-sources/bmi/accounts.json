@@ -1,0 +1,68 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "BMI Royalty Statements + Catalog Exports (parsed 2026-05-11)",
+  "accounts": [
+    {
+      "id": "550169257",
+      "name": "MORGAN AXEL ALBERT",
+      "type": "Writer",
+      "ipi": "00619544628",
+      "akaIpi": "00619544726",
+      "akaName": "AXFOLIE",
+      "address": "4922 Maymont Dr, View Park CA 90043-2032",
+      "lastDistribution": {
+        "period": "Q3 2025 (191st)",
+        "date": "2026-02-19",
+        "us": 576.37,
+        "intl": 61.81,
+        "adminServices": 2.35,
+        "total": 640.53
+      },
+      "uniqueWorks": 52,
+      "portalUrl": "https://www.bmi.com"
+    },
+    {
+      "id": "2097693",
+      "name": "MORGAN AXEL ALBERT (SP ACCT)",
+      "type": "Service Provider",
+      "ipi": "(separate)",
+      "address": "(see writer account)",
+      "lastDistribution": {
+        "period": "Q3 2025 (191st)",
+        "date": "2026-02-19",
+        "us": null,
+        "intl": null,
+        "adminServices": null,
+        "total": 7000,
+        "note": "approximate — combined dashboard shows ~$7K from this account"
+      },
+      "uniqueWorks": 34,
+      "portalUrl": "https://www.bmi.com",
+      "note": "Legacy catalog (m.A.A.d City, Collard Greens, Double Up, etc.) flows here. Largest income source."
+    },
+    {
+      "id": "1495523",
+      "name": "AXEL MORGAN MUSIC",
+      "type": "Publisher",
+      "ipi": "00719300462",
+      "address": "c/o WARNER-TAMERLANE PUBLISHING CORP, 777 S Santa Fe Ave, Los Angeles CA 90021",
+      "administeredBy": "Warner-Tamerlane (= Warner Chappell)",
+      "lastDistribution": {
+        "period": "Q3 2025 (191st)",
+        "date": "2026-02-19",
+        "us": 145.67,
+        "intl": 1.29,
+        "adminServices": 6.35,
+        "total": 153.31
+      },
+      "uniqueWorks": 16,
+      "portalUrl": "https://www.bmi.com",
+      "note": "Co-pub entity under Warner Chappell admin per 2016 deal (Deal ID 176794, ended 2026-03-05)"
+    }
+  ],
+  "totals": {
+    "lastQuarter": 7793.84,
+    "lastQuarterFormatted": "$7,793.84",
+    "uniqueWorksAcrossAll": 84
+  }
+}

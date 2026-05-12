@@ -80,7 +80,7 @@ function pct(part, total) {
   return `${Math.round((Number(part || 0) / Number(total)) * 100)}%`;
 }
 
-async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog }) {
+async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog, bmiAccounts, songviewConflicts, annualRoyalty, warnerDeal, negotiations }) {
   const rel = (file) => join(VAULT, file);
   const notePaths = {
     command: "Music.md",
@@ -185,7 +185,13 @@ async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, 
       { label: "Shazam", status: existsSync(rel(notePaths.shazamAnalytics)) ? "note ready" : "missing", value: "awaiting export" },
       { label: "Chartmetric", status: existsSync(rel(notePaths.chartmetricAnalytics)) ? "note ready" : "missing", value: "awaiting export" }
     ],
-    actions: checklist.items.slice(0, 8)
+    actions: checklist.items.slice(0, 8),
+    // Tile data sources added 2026-05-11 — each is null when source file is missing
+    bmiAccounts: bmiAccounts || null,
+    songviewConflicts: songviewConflicts || null,
+    annualRoyalty: annualRoyalty || null,
+    warnerDeal: warnerDeal || null,
+    negotiations: negotiations || null
   };
 }
 
@@ -771,7 +777,18 @@ async function build() {
   // WSN xls, Pershing 1099 via pdfplumber, Capital One statements, splice invoices).
   const moneyExtract = await readJSONSafe(join(VAULT, "outputs/money/SUMMARY.json"));
   const moneyCatalog = await readJSONSafe(join(VAULT, "outputs/money/catalog.json"));
-  const musicOsData = await buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog });
+
+  // Music tab tile data sources (added 2026-05-11 from BMI catalog audit)
+  const bmiAccounts = await readJSONSafe(join(SOURCES, "bmi/accounts.json"));
+  const songviewConflicts = await readJSONSafe(join(SOURCES, "bmi/songview-conflicts.json"));
+  const annualRoyalty = await readJSONSafe(join(SOURCES, "bmi/annual-royalty.json"));
+  const warnerDeal = await readJSONSafe(join(SOURCES, "warner-chappell/deal.json"));
+  const negotiations = await readJSONSafe(join(SOURCES, "negotiations/active.json"));
+
+  const musicOsData = await buildMusicOsData({
+    spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog,
+    bmiAccounts, songviewConflicts, annualRoyalty, warnerDeal, negotiations
+  });
 
   // Parse domain data
   const urgent = urgentMd ? parseUrgentItems(urgentMd) : [];

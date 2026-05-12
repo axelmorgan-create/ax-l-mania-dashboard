@@ -1,0 +1,67 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "Warner Chappell Client Portal screenshots + BMI publisher PDF",
+  "deal": {
+    "dealId": "176794",
+    "contractType": "Co-Publishing",
+    "startDate": "2016-07-01",
+    "endDate": "2026-03-05",
+    "rightsTermStatus": "RETENTION",
+    "dealSigningTerritory": "United States",
+    "administeredTerritory": "14 Territories",
+    "songCount": 16,
+    "dealName": "Axel Albert Morgan / Axel Morgan Music"
+  },
+  "accounts": [
+    {
+      "id": "US 100049070 000",
+      "currentBalance": -520.00,
+      "currentBalanceFormatted": "-$520.00",
+      "currentPeriod": "January 2026 - June 2026",
+      "priorPeriod": "July 2025 - December 2025",
+      "priorClosingBalance": -520.00,
+      "advances": 0,
+      "adjustments": 0,
+      "netEarnings": 0,
+      "status": "Settled (in deficit)"
+    },
+    {
+      "id": "US 100049072 001",
+      "currentBalance": -232.73,
+      "currentBalanceFormatted": "-$232.73",
+      "currentPeriod": "January 2026 - June 2026",
+      "priorPeriod": "July 2025 - December 2025",
+      "priorClosingBalance": -232.73,
+      "advances": 0,
+      "adjustments": 0,
+      "netEarnings": 0,
+      "status": "Settled (in deficit)"
+    }
+  ],
+  "summary": {
+    "combinedDeficit": -752.73,
+    "combinedDeficitFormatted": "-$752.73",
+    "daysSinceDealEnd": 67,
+    "statusFlag": "POST-DEAL: verify reversion / renewal / continued admin",
+    "actionRequired": "Email Jay-Jay Lord to confirm whether the rights have reverted, deal renewed, or admin continues. Deal end was 2026-03-05."
+  },
+  "songs": [
+    "BURIAL",
+    "BURIAL (INSTRUMENTAL VERSION)",
+    "CATWALK",
+    "FADE TO BLACK",
+    "FOREVER ON SOME FLY SHIT",
+    "FSWSAD (GET THIS MONEY)",
+    "KIDZ WITH GUNZ",
+    "KILLER TOFU",
+    "MATCHING ROLEXES",
+    "MY WILL",
+    "SAME HOES",
+    "SOCIALITE",
+    "STUCC IN THE GRIND",
+    "TRAP BEAT",
+    "VEGAS",
+    "WHEN EVERYBODY LOVED EVERYBODY"
+  ],
+  "portalUrl": "https://clientportal.warnermusic.com"
+}

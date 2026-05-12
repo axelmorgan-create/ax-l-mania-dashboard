@@ -2490,6 +2490,11 @@ const MusicView = ({ theme }) => {
   const royalty = music.royalty || { sources: [] };
   const catalog = music.catalog || {};
   const actions = music.actions || [];
+  const bmiAccounts = music.bmiAccounts;
+  const warnerDeal = music.warnerDeal;
+  const songviewConflicts = music.songviewConflicts;
+  const annualRoyalty = music.annualRoyalty;
+  const negotiations = music.negotiations;
   const [spotifyStatus, setSpotifyStatus] = useState(null);
   const [spotifyError, setSpotifyError] = useState(null);
   const [spotifyConnecting, setSpotifyConnecting] = useState(false);
@@ -2713,6 +2718,121 @@ const MusicView = ({ theme }) => {
             )) : <AwaitingCapture pointer="Music.md" theme={theme} compact />}
           </div>
         </Panel>
+
+        {/* Active Negotiations — time-critical: SACRIFICES drops 2026-05-29 */}
+        {negotiations?.negotiations?.length > 0 && (
+          <Panel title="ACTIVE NEGOTIATIONS" jpTitle="ball in court tracker" theme={theme} className="xl:col-span-4">
+            {negotiations.negotiations.map((n) => {
+              const ballThem = n.ballInCourt === "them";
+              return (
+                <div key={n.id} className="rounded-[14px] border p-3 mb-2" style={{ borderColor: ballThem ? "#FFB86B55" : "#9BF0E155", background: ballThem ? "rgba(255,184,107,.04)" : "rgba(155,240,225,.04)" }}>
+                  <div className="font-display text-[13px] text-white leading-tight mb-1">{n.title}</div>
+                  <div className="font-tech text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: ballThem ? "#FFB86B" : "#9BF0E1" }}>
+                    Ball in court: {n.ballInCourt} · {n.daysSinceLastResponse}d since last reply
+                  </div>
+                  <KV k="single" v={`${n.leadSingle} · drops ${n.leadSingleDropDate}`} alert theme={theme} />
+                  <KV k="advance" v={n.sacrificesTerms?.advanceFormatted || "—"} green={Boolean(n.sacrificesTerms?.advance)} theme={theme} />
+                  <KV k="counsel" v={n.userCounsel?.name || "—"} theme={theme} />
+                  <KV k="counterparty" v={n.counterpartyCounsel?.name || "—"} theme={theme} />
+                  {n.actionForUser && (
+                    <div className="mt-2 font-tech text-[9px] leading-relaxed opacity-80" style={{ color: theme.hex }}>
+                      → {n.actionForUser}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </Panel>
+        )}
+
+        {/* BMI Accounts — three cards: Writer, SP, Publisher */}
+        {bmiAccounts?.accounts?.length > 0 && (
+          <Panel title="BMI ACCOUNTS" jpTitle="writer · sp · publisher" theme={theme} className="xl:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {bmiAccounts.accounts.map((acct) => (
+                <div key={acct.id} className="rounded-[14px] border p-3" style={{ borderColor: `${theme.hex}42`, background: "linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015))" }}>
+                  <div className="font-tech text-[9px] uppercase tracking-[0.22em] opacity-60" style={{ color: theme.hex }}>{acct.type}</div>
+                  <div className="font-display text-[14px] leading-tight mt-1 text-white truncate" title={acct.name}>{acct.name}</div>
+                  <div className="font-tech text-[9px] opacity-50 mt-0.5" style={{ color: theme.hex }}>BMI #{acct.id} · IPI {acct.ipi}</div>
+                  <div className="font-display text-2xl leading-none mt-3" style={{ color: "#9BF0E1", textShadow: `0 0 12px ${theme.hex}33` }}>
+                    {acct.lastDistribution?.total ? `$${Number(acct.lastDistribution.total).toLocaleString(undefined, { maximumFractionDigits: 0 })}` : "—"}
+                  </div>
+                  <div className="font-tech text-[9px] mt-1 opacity-70" style={{ color: theme.hex }}>{acct.lastDistribution?.period || ""}</div>
+                  {acct.administeredBy && (
+                    <div className="font-tech text-[9px] mt-2 opacity-60" style={{ color: "#FFB86B" }}>admin: {acct.administeredBy}</div>
+                  )}
+                  <div className="font-tech text-[9px] mt-2 opacity-50" style={{ color: "#d0d6e0" }}>{acct.uniqueWorks} unique works</div>
+                </div>
+              ))}
+            </div>
+            {bmiAccounts.totals && (
+              <div className="font-tech text-[10px] mt-3 pt-2 border-t flex items-center gap-3" style={{ borderColor: `${theme.hex}33`, color: theme.hex }}>
+                <span className="font-display text-[14px] text-white">{bmiAccounts.totals.lastQuarterFormatted}</span>
+                <span className="opacity-60">combined last-quarter distribution</span>
+                <span className="opacity-50">· {bmiAccounts.totals.uniqueWorksAcrossAll} unique works total</span>
+              </div>
+            )}
+          </Panel>
+        )}
+
+        {/* Warner Chappell Deal Status */}
+        {warnerDeal?.deal && (
+          <Panel title="WARNER CHAPPELL DEAL" jpTitle={warnerDeal.summary?.statusFlag || "co-publishing"} theme={theme} className="xl:col-span-4">
+            <KV k="deal id" v={warnerDeal.deal.dealId} theme={theme} />
+            <KV k="term" v={`${warnerDeal.deal.startDate} → ${warnerDeal.deal.endDate}`} theme={theme} />
+            <KV k="songs" v={`${warnerDeal.deal.songCount} (${warnerDeal.deal.contractType})`} theme={theme} />
+            <KV k="rights status" v={warnerDeal.deal.rightsTermStatus} green={warnerDeal.deal.rightsTermStatus === "RETENTION"} theme={theme} />
+            <KV k="combined balance" v={warnerDeal.summary?.combinedDeficitFormatted || "—"} alert={Number(warnerDeal.summary?.combinedDeficit) < 0} theme={theme} />
+            <KV k="days since end" v={`${warnerDeal.summary?.daysSinceDealEnd ?? 0}d`} alert theme={theme} />
+            {warnerDeal.summary?.actionRequired && (
+              <div className="mt-2 font-tech text-[9px] leading-relaxed border-l-2 pl-2" style={{ color: "#FFB86B", borderColor: "#FFB86B" }}>
+                {warnerDeal.summary.actionRequired}
+              </div>
+            )}
+          </Panel>
+        )}
+
+        {/* Songview Conflicts — parked money */}
+        {songviewConflicts?.conflicts?.length > 0 && (
+          <Panel title="SONGVIEW CONFLICTS" jpTitle={`${songviewConflicts.conflicts.length} works · parked money`} theme={theme} className="xl:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 font-tech text-[10px]">
+              {songviewConflicts.conflicts.map((c) => (
+                <div key={c.title} className="border-l-2 pl-2 py-1" style={{ borderColor: "#FF7777" }}>
+                  <div className="font-display font-bold text-white text-[11px]">{c.title}</div>
+                  <div className="opacity-65" style={{ color: "#d0d6e0" }}>
+                    in {c.accounts.join(" + ")} · <span style={{ color: "#FFB86B" }}>{c.status}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="font-tech text-[9px] mt-3 opacity-60" style={{ color: theme.hex }}>
+              Each conflict = BMI holds disputed share until splits agreed. Resolving them = revenue unlock.
+            </div>
+          </Panel>
+        )}
+
+        {/* Annual Royalty Trend */}
+        {annualRoyalty?.annualRoyalty?.length > 0 && (
+          <Panel title="ROYALTY HISTORY" jpTitle="BMI + Warner annual" theme={theme} className="xl:col-span-4">
+            {(() => {
+              const max = Math.max(...annualRoyalty.annualRoyalty.map((y) => y.total || 0), 1);
+              return annualRoyalty.annualRoyalty.map((y) => (
+                <Bar
+                  key={y.year}
+                  label={String(y.year)}
+                  val={Math.round((y.total / max) * 100)}
+                  amount={`$${(y.total / 1000).toFixed(1)}K`}
+                  theme={theme}
+                  green={y.total >= 50000}
+                  alert={y.total < 10000 && y.year >= 2020}
+                />
+              ));
+            })()}
+            <div className="font-tech text-[9px] mt-2 opacity-60" style={{ color: theme.hex }}>
+              peak: ${(annualRoyalty.summary?.peakAmount / 1000).toFixed(0)}K in {annualRoyalty.summary?.peakYear}
+            </div>
+          </Panel>
+        )}
       </div>
     </motion.div>
   );

@@ -1,0 +1,33 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "WMG Electronic Payment Notifications + 2024 tax draft via Sam (Your Tax Team)",
+  "wmgPayee": "MR MORGAN PRODUCTIONS LLC",
+  "wmgAccountNumber": "432389",
+  "wmgPayerAddress": "Warner Music Group, 511 Union Street, Nashville TN 37219",
+  "wmgPayerPhone": "310-441-8600",
+  "payments": [
+    {
+      "paymentDocument": "2002835307",
+      "vendorDocument": "AMORGANPUR1725",
+      "paymentDate": "2025-01-06",
+      "vendorInvoiceDate": "2025-01-07",
+      "currency": "USD",
+      "grossAmount": 468500.00,
+      "deductions": 0.00,
+      "netAmount": 468500.00,
+      "purpose": "Warner-Tamerlane Publishing Sale (catalog acquisition)",
+      "noteSource": "Electronic Payment Notification.PDF / (2).PDF — duplicate"
+    }
+  ],
+  "summary": {
+    "totalReceived": 468500.00,
+    "totalReceivedFormatted": "$468,500.00",
+    "expectedFromSale": 620000,
+    "expectedFromSaleNote": "2024 tax records show $620K capital gain; gap of ~$150K may be deferred payment, holdback, basis offset, or future installment — needs reconciliation",
+    "taxImpact": {
+      "federal2024": 193000,
+      "ca2024": 8000,
+      "total2024": 201000
+    }
+  }
+}

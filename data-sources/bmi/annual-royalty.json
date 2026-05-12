@@ -1,0 +1,28 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "Tax-prep ledger 'BMI and Warner.xlsx' parsed 2026-05-11",
+  "currency": "USD",
+  "annualRoyalty": [
+    { "year": 2016, "bmi": 2792, "warner": 0, "total": 2792 },
+    { "year": 2017, "bmi": 5079, "warner": 0, "total": 5079 },
+    { "year": 2018, "bmi": 6646, "warner": 108502, "total": 115148, "taxReported": 127517, "note": "First full Warner co-pub year" },
+    { "year": 2019, "bmi": 8997, "warner": 1024, "total": 10021, "taxReported": 39566, "umg": 10470 },
+    { "year": 2020, "bmi": 13921, "warner": 29837, "total": 43758, "taxReported": 122075, "umg": 12588, "royaltyExchange": 7340, "note": "Royalty Exchange line — verify if future-royalty sale" },
+    { "year": 2021, "bmi": 14740, "warner": 88826, "total": 103566 },
+    { "year": 2022, "bmi": 13770, "warner": 49544, "total": 63314 },
+    { "year": 2023, "bmi": 11512, "warner": 86512, "total": 98024 },
+    { "year": 2024, "bmi": 2929, "warner": 0, "total": 2929, "note": "Partial — only Q3+Q4 2023 deposits captured. BMI Sale Allocation $1,000 on 2024-03-29 also recorded." }
+  ],
+  "summary": {
+    "peakYear": 2018,
+    "peakAmount": 127517,
+    "lifetimeBmiTotal": 80386,
+    "lifetimeWarnerTotal": 364245,
+    "lifetimeReportedTotal": 504395,
+    "openQuestions": [
+      "What was the Royalty Exchange $7,340 in 2020? Future royalty sale?",
+      "What is the BMI Sale Allocation $1,000 line on 2024-03-29?",
+      "2024-2025 numbers in this ledger are stale — pull from BMI direct"
+    ]
+  }
+}

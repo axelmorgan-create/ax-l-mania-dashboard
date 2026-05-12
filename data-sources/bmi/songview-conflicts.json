@@ -1,0 +1,66 @@
+{
+  "lastUpdated": "2026-05-11",
+  "source": "BMI Catalog Exports parsed 2026-05-11",
+  "note": "Songview Conflict status = publishing splits don't add to 100% or have contested claims. BMI holds disputed share until resolved.",
+  "conflicts": [
+    {
+      "title": "CLUBHOUSE",
+      "accounts": ["Publisher", "SP"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=CLUBHOUSE"
+    },
+    {
+      "title": "DOUBLE UP",
+      "accounts": ["SP", "Writer"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=DOUBLE+UP"
+    },
+    {
+      "title": "LEMME FIND OUT",
+      "accounts": ["Writer"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=LEMME+FIND+OUT"
+    },
+    {
+      "title": "MATCHING ROLEXES",
+      "titleNote": "Misspelled in BMI as MATHCING ROLEXES — also on PROLIFIC",
+      "accounts": ["Publisher", "Writer"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=MATCHING+ROLEXES"
+    },
+    {
+      "title": "MONSTER",
+      "accounts": ["SP"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=MONSTER"
+    },
+    {
+      "title": "PRAY EVERYDAY (Survivor's Guilt)",
+      "accounts": ["SP"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=PRAY+EVERYDAY"
+    },
+    {
+      "title": "SO ELASTIC",
+      "accounts": ["Writer"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=SO+ELASTIC"
+    },
+    {
+      "title": "STUCC IN THE GRIND",
+      "accounts": ["Publisher", "Writer"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=STUCC+IN+THE+GRIND"
+    },
+    {
+      "title": "TAMMY'S SONG",
+      "accounts": ["SP"],
+      "status": "Share and/or Participant Conflict",
+      "actionUrl": "https://repertoire.bmi.com/Search/Search?Type=Title&Search=TAMMY"
+    }
+  ],
+  "summary": {
+    "totalConflicts": 9,
+    "actionRequired": "Each conflict has parked money. Resolution requires the disputing parties to agree on splits and BMI to update."
+  }
+}
