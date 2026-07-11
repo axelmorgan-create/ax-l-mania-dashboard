@@ -80,7 +80,7 @@ function pct(part, total) {
   return `${Math.round((Number(part || 0) / Number(total)) * 100)}%`;
 }
 
-async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog, bmiAccounts, songviewConflicts, annualRoyalty, warnerDeal, negotiations }) {
+async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog, bmiAccounts, songviewConflicts, annualRoyalty, soundExchange, warnerDeal, warnerPayments, negotiations }) {
   const rel = (file) => join(VAULT, file);
   const notePaths = {
     command: "Music.md",
@@ -190,7 +190,9 @@ async function buildMusicOsData({ spotify, spotifyAppConfig, spotifyAuthStatus, 
     bmiAccounts: bmiAccounts || null,
     songviewConflicts: songviewConflicts || null,
     annualRoyalty: annualRoyalty || null,
+    soundExchange: soundExchange || null,
     warnerDeal: warnerDeal || null,
+    warnerPayments: warnerPayments || null,
     negotiations: negotiations || null
   };
 }
@@ -782,12 +784,30 @@ async function build() {
   const bmiAccounts = await readJSONSafe(join(SOURCES, "bmi/accounts.json"));
   const songviewConflicts = await readJSONSafe(join(SOURCES, "bmi/songview-conflicts.json"));
   const annualRoyalty = await readJSONSafe(join(SOURCES, "bmi/annual-royalty.json"));
+  const soundExchange = await readJSONSafe(join(SOURCES, "bmi/soundexchange.json"));
   const warnerDeal = await readJSONSafe(join(SOURCES, "warner-chappell/deal.json"));
+  const warnerPayments = await readJSONSafe(join(SOURCES, "warner-chappell/payments.json"));
   const negotiations = await readJSONSafe(join(SOURCES, "negotiations/active.json"));
+
+  // Live recompute: daysSinceLastResponse counters tick forward without any data file edit.
+  // Each negotiation has lastResponseFromThemISO (ISO 8601); we compute days here so the
+  // dashboard always shows current values rather than the stale hardcoded number.
+  if (negotiations?.negotiations?.length) {
+    const now = NOW.getTime();
+    for (const n of negotiations.negotiations) {
+      const iso = n.lastResponseFromThemISO || (n.lastResponseFromThem ? `${n.lastResponseFromThem}T00:00:00Z` : null);
+      if (iso) {
+        const t = new Date(iso).getTime();
+        if (!Number.isNaN(t)) n.daysSinceLastResponse = Math.max(0, Math.floor((now - t) / 86400000));
+      }
+      n.lastCheckedAt = NOW.toISOString();
+    }
+  }
 
   const musicOsData = await buildMusicOsData({
     spotify, spotifyAppConfig, spotifyAuthStatus, moneyExtract, moneyCatalog,
-    bmiAccounts, songviewConflicts, annualRoyalty, warnerDeal, negotiations
+    bmiAccounts, songviewConflicts, annualRoyalty, soundExchange,
+    warnerDeal, warnerPayments, negotiations
   });
 
   // Parse domain data
@@ -960,7 +980,7 @@ async function build() {
         kpis: m ? [
           { label: "Royalty income (extracted)", value: fmt(royaltyTotal), delta: "BMI+WCM+WSN", awaiting: null },
           { label: "Tax exposure (2024)", value: fmt(tax), delta: "fed + CA", awaiting: null },
-          { label: "Pershing brokerage", value: fmt(pershingActivity), delta: `interest ${fmt(pershingInterest)}`, awaiting: null },
+          { label: "Pershing tax activity (not cash)", value: pershingActivity ? `${fmt(pershingActivity)} activity` : "—", delta: `2024 interest ${fmt(pershingInterest)}`, awaiting: null },
           { label: "Card spend (Feb–Apr 25)", value: fmt(cardSpend), delta: `Splice ${fmt(splice)}/mo`, awaiting: null }
         ] : [
           { label: "Cash on hand", value: "AWAITING", delta: "QuickBooks re-auth", awaiting: "data-sources/quickbooks/STATUS.md" },
@@ -972,7 +992,7 @@ async function build() {
           { label: "BMI (YTD 2025)", val: Math.min(100, Math.round((bmiYtd ?? 0) / 50)), amount: fmt(bmiYtd) },
           { label: "Warner Chappell (xlsx)", val: Math.min(100, Math.round((wcmTotal ?? 0) / 200)), amount: fmt(wcmTotal) },
           { label: "WSN BURIED (est.)", val: Math.min(100, Math.round((wsn ?? 0) * 4)), amount: fmt(wsn) },
-          { label: "Pershing brokerage", val: pershingActivity ? 80 : 0, amount: pershingActivity ? `~${fmt(pershingActivity)} activity` : "AWAITING" }
+          { label: "Pershing tax doc", val: pershingActivity ? 80 : 0, amount: pershingActivity ? `~${fmt(pershingActivity)} 2024 activity, not cash` : "AWAITING" }
         ] : [
           { label: "Music (royalties)", val: 0, amount: "AWAITING capture" },
           { label: "AI content", val: 0, amount: "AWAITING capture" },
@@ -982,7 +1002,7 @@ async function build() {
         watchlist: [
           `${moneyCatalog?.with_conflicts ?? 0} Songview catalog conflicts`,
           `$${tax >= 1000 ? Math.round(tax / 1000) + "K" : tax} tax owed`,
-          "Pershing acct surfaced 2026-05-09",
+          "Pershing tax doc is historical activity, not survival cash",
           "Portal creds unrotated",
           "First paid offer not live"
         ],

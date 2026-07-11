@@ -1,6 +1,16 @@
 node_modules/
 dist/
+release/
+release-*/
+.DS_Store
 *.log
 verify-*.png
 .env
-release/
+
+# Local/private connector snapshots — never publish from this public repo.
+data-sources/google/calendar.json
+data-sources/google/contacts.json
+data-sources/google/gmail.json
+
+# Generated local music runs.
+data-sources/sonauto/

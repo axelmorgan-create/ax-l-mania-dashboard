@@ -9,14 +9,18 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxWorker from "mapbox-gl/dist/mapbox-gl-csp-worker?worker";
 mapboxgl.workerClass = MapboxWorker;
 import {
+  Activity,
   AlertTriangle,
   Box,
   Brain,
   CheckCircle2,
+  Command,
   Cpu,
   Database,
   FileQuestion,
+  Gauge,
   Globe,
+  Layers3,
   LineChart,
   Lock,
   Map as MapIcon,
@@ -25,9 +29,11 @@ import {
   RefreshCw,
   Settings,
   Shield,
+  Sparkles,
   Target,
   Terminal,
-  TrendingUp
+  TrendingUp,
+  Zap
 } from "lucide-react";
 import state from "./data/state.json";
 
@@ -50,7 +56,7 @@ const LOGO_HORIZONTAL_FOOTER = "./assets/logos/ax-l-logo-horizontal-footer.png";
 const OPERATOR_AVATAR = "./assets/operator/operator-avatar.svg";
 
 const TABS = [
-  { id: VIEWS.HOME, label: "Hub", icon: Box, color: "#00E5FF" },
+  { id: VIEWS.HOME, label: "Intent", icon: Target, color: "#00E5FF" },
   { id: VIEWS.WORLD, label: "World", icon: Globe, color: "#D2A86B" },
   { id: VIEWS.BRAIN, label: "Brain", icon: Brain, color: "#FFB300" },
   { id: VIEWS.MUSIC, label: "Music", icon: Music, color: "#FF7700" },
@@ -808,6 +814,14 @@ const GlobalStyles = () => (
     @keyframes scale-breath { 0%, 100% { transform: scale(1.04); } 50% { transform: scale(1.1); } }
     @keyframes pan-left { 0% { transform: translateX(0) scale(1.1); } 100% { transform: translateX(-2.5%) scale(1.12); } }
     @keyframes pan-right { 0% { transform: translateX(-2%) scale(1.08); } 100% { transform: translateX(2%) scale(1.1); } }
+    @keyframes command-sweep { 0% { transform: translateX(-140%); opacity: 0; } 18% { opacity: .8; } 82% { opacity: .35; } 100% { transform: translateX(340%); opacity: 0; } }
+    @keyframes pulse-node { 0%, 100% { transform: scale(.72); opacity: .45; } 50% { transform: scale(1.18); opacity: 1; } }
+    [data-quality="balanced"] .quality-ultra { display: none !important; }
+    [data-quality="eco"] .quality-ultra, [data-quality="eco"] .quality-balanced { display: none !important; }
+    [data-quality="eco"] * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .quality-ultra, .quality-balanced { display: none !important; }
+    }
   `}</style>
 );
 
@@ -896,19 +910,19 @@ const OperatorBadge = ({ theme, className = "w-12 h-12" }) => (
   </div>
 );
 
-const Panel = ({ title, jpTitle, children, className = "", noBg = false, isAlert = false, theme = THEME_DEFAULT }) => {
+const Panel = ({ id, title, jpTitle, children, className = "", noBg = false, isAlert = false, theme = THEME_DEFAULT }) => {
   const panelColor = isAlert ? "#FF0000" : theme.hex;
   if (noBg) {
     return (
-      <motion.div variants={sectionRevealVariants} className={`relative flex flex-col pointer-events-auto ${className}`}>
+      <motion.div id={id} variants={sectionRevealVariants} className={`relative flex flex-col pointer-events-auto ${className}`}>
         {children}
       </motion.div>
     );
   }
   return (
     <motion.div
+      id={id}
       variants={sectionRevealVariants}
-      onMouseEnter={triggerMascotSwap}
       onClick={triggerMascotSwap}
       className={`cyber-panel-wrap p-[1px] relative flex flex-col pointer-events-auto ${className}`}
       style={{ backgroundColor: `${panelColor}50`, filter: isAlert ? "drop-shadow(0 0 10px rgba(255,0,0,0.5))" : "none" }}
@@ -1604,81 +1618,212 @@ const RelationshipGrid = ({ people = {}, theme }) => {
   );
 };
 
-const HomeHubView = ({ theme }) => (
-  <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="flex w-full h-full relative p-2 md:p-4 gap-6">
-    <div className="w-full md:w-[38%] flex flex-col gap-4 z-30 h-full">
-      <Panel title="NORTH STARS" jpTitle="ドメイン" theme={theme}>
-        <div className="space-y-2">
-          {(DATA.northStars || []).length === 0 ? (
-            <AwaitingCapture pointer="wiki/north-stars.md" note="No north stars defined yet. Author them or run npm refresh." theme={theme} />
-          ) : (
-            DATA.northStars.map((item) => (
-              <div key={item.domain}>
-                <KV
-                  k={`${item.domain} / ${item.metric}`}
-                  v={`${item.value} · ${item.type}`}
-                  green={item.type === "leading" && item.value !== "MISSING"}
-                  alert={item.value === "MISSING" || item.type === "control"}
-                  theme={theme}
-                />
-                {item.awaiting && <AwaitingCapture pointer={item.awaiting} theme={theme} compact />}
-              </div>
-            ))
-          )}
-        </div>
-      </Panel>
-
-      <Panel title="SILVER FOX CORE" jpTitle="interactive" theme={theme} className="flex-grow min-h-[360px]">
-        <SilverFoxBadge theme={theme} className="w-full h-full min-h-[330px]" modelScale={1.28} />
-      </Panel>
-    </div>
-
-    <div className="hidden md:grid w-[62%] grid-cols-2 gap-4 z-30 content-end pointer-events-auto">
-      <Panel title="URGENT TRIGGERS" jpTitle="from URGENT.md" theme={theme} className="self-end">
-        {DATA.triggers.length === 0 ? (
-          <AwaitingCapture pointer="outputs/chatgpt-deep-dive/URGENT.md" theme={theme} />
-        ) : (
-          DATA.triggers.map((item) => (
-            <KV
-              key={item.label}
-              k={`#${item.n} ${item.label}`}
-              v={item.rule}
-              alert={item.level === "CRITICAL"}
-              green={item.level === "ACTIVE"}
-              theme={theme}
-            />
-          ))
-        )}
-      </Panel>
-      <Panel title="KILL LIST" jpTitle="capture filter" theme={theme} className="self-end">
-        <div className="space-y-2 font-tech text-[10px]">
-          {DATA.killList.map((item) => (
-            <div key={item} className="border-l-2 pl-2" style={{ borderColor: theme.hex, color: theme.hex }}>
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="mt-2 text-[9px] opacity-50 font-tech">
-          source: areas/AI Capture and Information Defaults.md
-        </div>
-      </Panel>
-      <Panel title="VAULT OUTPUT" jpTitle="capture > synthesis" theme={theme} className="col-span-2">
-        {((DATA.content?.kpis || []).length === 0 && (DATA.content?.economics || []).length === 0) ? (
-          <AwaitingCapture pointer="wiki/business/state.md" note="Vault output economics not captured — author or run npm refresh." theme={theme} />
-        ) : (
-          <>
-            <div className="grid grid-cols-4 gap-2 mb-3">
-              {(DATA.content?.kpis || []).map(([label, value, delta]) => (
-                <MiniKpi key={label} label={label} value={value} delta={delta} theme={theme} />
-              ))}
-            </div>
-            <DataTable rows={DATA.content?.economics || []} theme={theme} />
-          </>
-        )}
-      </Panel>
-    </div>
-  </motion.div>
+const IntentHelp = ({ label, tip, theme }) => (
+  <span className="group/help relative inline-flex items-center gap-1 align-middle" title={tip}>
+    <span>{label}</span>
+    <span
+      className="inline-flex h-4 w-4 items-center justify-center rounded-full border font-tech text-[9px] font-black leading-none opacity-80"
+      style={{ borderColor: `${theme.hex}80`, color: theme.hex, backgroundColor: `${theme.hex}14` }}
+      aria-hidden="true"
+    >
+      ?
+    </span>
+    <span
+      className="pointer-events-none absolute left-0 top-full z-[90] mt-2 hidden w-64 border bg-black/95 p-2 font-tech text-[9px] normal-case leading-snug tracking-normal text-white/80 shadow-2xl group-hover/help:block group-focus-within/help:block"
+      style={{ borderColor: `${theme.hex}88`, boxShadow: `0 0 22px ${theme.hex}30` }}
+    >
+      {tip}
+    </span>
+  </span>
 );
+
+const IntentMetricCard = ({ item, theme }) => {
+  const isReady = item.value && !["MISSING", "AWAITING"].includes(String(item.value));
+  return (
+    <div
+      className="rounded-[18px] border bg-black/45 p-3 transition-all hover:-translate-y-0.5 hover:bg-white/[0.07]"
+      style={{ borderColor: `${isReady ? "#33FF00" : "#FFB300"}55` }}
+      title={`${item.domain}: ${item.metric}. This tells Foleybot which lane matters before taking action.`}
+    >
+      <div className="mb-2 flex items-start justify-between gap-2">
+        <div className="font-display text-[12px] font-black uppercase tracking-[0.16em] text-white">{item.domain}</div>
+        <span className="rounded-full border px-2 py-0.5 font-tech text-[8px] uppercase tracking-[0.16em]" style={{ borderColor: `${theme.hex}70`, color: theme.hex }}>
+          {item.type || "signal"}
+        </span>
+      </div>
+      <div className="font-tech text-[10px] uppercase leading-snug text-white/55">{item.metric}</div>
+      <div className="mt-2 font-display text-xl font-black leading-none" style={{ color: isReady ? "#33FF00" : "#FFB300" }}>
+        {item.value || "needs input"}
+      </div>
+      {item.awaiting && <AwaitingCapture pointer={item.awaiting} theme={theme} compact />}
+    </div>
+  );
+};
+
+const IntentStep = ({ n, title, body, status, tip, theme }) => (
+  <div
+    className="group/step relative overflow-visible rounded-[22px] border bg-black/50 p-3 shadow-[inset_0_0_30px_rgba(255,255,255,0.03)] transition-all hover:-translate-y-0.5 hover:bg-white/[0.07]"
+    style={{ borderColor: `${theme.hex}45` }}
+    title={tip}
+  >
+    <div className="flex items-start gap-3">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border font-display text-sm font-black" style={{ borderColor: theme.hex, color: theme.hex, boxShadow: `0 0 14px ${theme.hex}35` }}>
+        {n}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-2">
+          <div className="font-display text-[13px] font-black uppercase tracking-[0.14em] text-white">{title}</div>
+          <span className="rounded-full border px-2 py-0.5 font-tech text-[8px] uppercase tracking-[0.16em]" style={{ borderColor: `${theme.hex}70`, color: theme.hex }}>
+            {status}
+          </span>
+        </div>
+        <div className="mt-1 font-tech text-[10px] leading-snug text-white/62">{body}</div>
+      </div>
+    </div>
+    <div className="mt-3 border-l-2 pl-2 font-tech text-[9px] leading-snug text-white/45" style={{ borderColor: theme.hex }}>
+      Hover why: {tip}
+    </div>
+  </div>
+);
+
+const PriorityAction = ({ item, theme }) => (
+  <div
+    className="rounded-[18px] border bg-black/45 p-3 transition-all hover:bg-white/[0.07]"
+    style={{ borderColor: item.level === "CRITICAL" ? "#FF220088" : `${theme.hex}55` }}
+    title="Important because this is an active blocker or deadline. Handle these before exploring new ideas."
+  >
+    <div className="mb-1 flex items-center justify-between gap-2">
+      <span className="font-tech text-[9px] uppercase tracking-[0.18em]" style={{ color: item.level === "CRITICAL" ? "#FF7777" : theme.hex }}>
+        Priority {item.n}
+      </span>
+      <span className="rounded-full bg-white/10 px-2 py-0.5 font-tech text-[8px] uppercase text-white/65">{item.level}</span>
+    </div>
+    <div className="font-display text-[13px] font-black uppercase leading-tight text-white">{item.label}</div>
+    <div className="mt-1 font-tech text-[10px] leading-snug text-white/55">Direction: {item.rule}</div>
+  </div>
+);
+
+const HomeHubView = ({ theme }) => {
+  const northStars = DATA.northStars || [];
+  const actions = DATA.triggers || [];
+  const contentKpis = DATA.content?.kpis || [];
+  const contentRows = DATA.content?.economics || [];
+  const readyCount = northStars.filter((item) => item.value && !["MISSING", "AWAITING"].includes(String(item.value))).length;
+  const intentSteps = [
+    {
+      n: "01",
+      title: "Choose the lane",
+      status: `${readyCount}/${northStars.length || 0} signals`,
+      body: "Start with Music, Finance, Network, Agents, or Vault. Pick one before asking Foleybot to build or research.",
+      tip: "This prevents the dashboard from becoming a pile of cool panels. One lane creates one clear next move."
+    },
+    {
+      n: "02",
+      title: "Check blockers",
+      status: `${actions.length} active`,
+      body: "Review deadlines and urgent risks. If something is red, it outranks new ideas.",
+      tip: "Important work can hide behind exciting work. Blockers protect money, access, reputation, and momentum."
+    },
+    {
+      n: "03",
+      title: "Turn signal into action",
+      status: "ask Foleybot",
+      body: "Use the card text as your prompt: what changed, why it matters, and what to do next.",
+      tip: "Clear prompts give Foleybot context and reduce back-and-forth. The dashboard should tell you what to ask for."
+    }
+  ];
+
+  return (
+    <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="grid min-h-full w-full grid-cols-1 gap-4 overflow-visible p-2 pb-24 md:grid-cols-12 md:p-4 md:pb-28">
+      <div className="z-30 md:col-span-12">
+        <Panel title="ROAD TO INTENT" jpTitle="simple operating map" theme={theme}>
+          <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <div className="font-display text-3xl font-black uppercase leading-none text-white md:text-5xl">
+                Pick the goal. See the blocker. Ask for the next move.
+              </div>
+              <div className="mt-3 max-w-3xl font-tech text-[12px] leading-relaxed text-white/65">
+                This page is the front door for Foleybot. It should answer: what matters today, why it matters, and where to click next. Hover any ? or card for the plain-language reason behind it.
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2 font-tech text-[10px] uppercase tracking-[0.18em]">
+                <span className="border px-2 py-1" style={{ borderColor: `${theme.hex}70`, color: theme.hex }}>1. choose lane</span>
+                <span className="border px-2 py-1" style={{ borderColor: `${theme.hex}70`, color: theme.hex }}>2. read signal</span>
+                <span className="border px-2 py-1" style={{ borderColor: `${theme.hex}70`, color: theme.hex }}>3. act or ask</span>
+              </div>
+            </div>
+            <div className="rounded-[22px] border bg-black/45 p-4" style={{ borderColor: `${theme.hex}50` }}>
+              <div className="mb-2 font-display text-[13px] font-black uppercase tracking-[0.16em]" style={{ color: theme.hex }}>Today’s direction</div>
+              <div className="font-tech text-[11px] leading-relaxed text-white/70">
+                Do not hunt for features. Start with the clearest intent card, then ask Foleybot to either explain it, clean it up, or turn it into a task.
+              </div>
+              <div className="mt-3 border-l-2 pl-3 font-tech text-[10px] leading-snug text-white/45" style={{ borderColor: theme.hex }}>
+                Why this matters: simple navigation keeps the system useful when the vault, music, money, and agent layers all compete for attention.
+              </div>
+            </div>
+          </div>
+        </Panel>
+      </div>
+
+      <div className="z-30 space-y-4 md:col-span-4">
+        <Panel title={<IntentHelp label="INTENT LANES" tip="These are the main places your attention can go. Pick one lane so Foleybot can reason from the right context." theme={theme} />} jpTitle="choose first" theme={theme}>
+          <div className="grid gap-2">
+            {northStars.length === 0 ? (
+              <AwaitingCapture pointer="wiki/north-stars.md" note="No intent lanes defined yet. Author them or run npm refresh." theme={theme} />
+            ) : (
+              northStars.map((item) => <IntentMetricCard key={`${item.domain}-${item.metric}`} item={item} theme={theme} />)
+            )}
+          </div>
+        </Panel>
+        <Panel title="SILVER FOX CORE" jpTitle="interactive" theme={theme}>
+          <SilverFoxBadge theme={theme} className="h-[330px] w-full" modelScale={1.28} />
+        </Panel>
+      </div>
+
+      <div className="z-30 space-y-4 md:col-span-4">
+        <Panel title={<IntentHelp label="HOW TO USE THIS" tip="This is a mini operating manual. It tells you the order: choose, check, act." theme={theme} />} jpTitle="3-step flow" theme={theme}>
+          <div className="space-y-3">
+            {intentSteps.map((step) => <IntentStep key={step.n} {...step} theme={theme} />)}
+          </div>
+        </Panel>
+        <Panel title={<IntentHelp label="CAPTURE FILTER" tip="These are the things that steal time or pollute the vault. If a new idea matches this list, skip it or ask Foleybot to summarize it in your own words." theme={theme} />} jpTitle="what to ignore" theme={theme}>
+          <div className="space-y-2 font-tech text-[10px]">
+            {(DATA.killList || []).map((item) => (
+              <div key={item} className="rounded-[14px] border-l-2 bg-black/35 px-3 py-2 leading-snug text-white/68" style={{ borderColor: theme.hex }} title="Important because attention is the dashboard's real budget.">
+                {item}
+              </div>
+            ))}
+          </div>
+        </Panel>
+      </div>
+
+      <div className="z-30 space-y-4 md:col-span-4">
+        <Panel id="decision-intent" title={<IntentHelp label="NEXT MOVES" tip="These are the current action cues. Handle red or time-sensitive items before adding more work." theme={theme} />} jpTitle="blockers first" theme={theme}>
+          <div className="space-y-2">
+            {actions.length === 0 ? (
+              <AwaitingCapture pointer="outputs/chatgpt-deep-dive/URGENT.md" theme={theme} />
+            ) : (
+              actions.slice(0, 5).map((item) => <PriorityAction key={`${item.n}-${item.label}`} item={item} theme={theme} />)
+            )}
+          </div>
+        </Panel>
+        <Panel title={<IntentHelp label="VAULT OUTPUT" tip="This shows whether raw capture is turning into usable material. The goal is not more files; it is clearer decisions and reusable assets." theme={theme} />} jpTitle="capture → useful" theme={theme}>
+          {contentKpis.length === 0 && contentRows.length === 0 ? (
+            <AwaitingCapture pointer="wiki/business/state.md" note="Vault output economics not captured — author or run npm refresh." theme={theme} />
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                {contentKpis.map(([label, value, delta]) => (
+                  <MiniKpi key={label} label={label} value={value} delta={delta} theme={theme} />
+                ))}
+              </div>
+              <DataTable rows={contentRows} theme={theme} />
+            </>
+          )}
+        </Panel>
+      </div>
+    </motion.div>
+  );
+};
 
 const SecondBrainView = ({ theme }) => {
   const gaps = DATA.brain.synthesisGaps || [];
@@ -1726,7 +1871,7 @@ const SecondBrainView = ({ theme }) => {
           </div>
           <Magi3DCore theme={theme} />
         </Panel>
-        <Panel title="SYNTHESIS GAPS" jpTitle="must be authored" theme={theme} className="flex-grow">
+        <Panel id="decision-brain" title="SYNTHESIS GAPS" jpTitle="must be authored" theme={theme} className="flex-grow">
           <div className="space-y-2 font-tech text-[10px] max-h-[260px] overflow-y-auto scrollbar-hide pr-1">
             {(DATA.brain.synthesisGaps || []).map((gap) => (
               <div key={gap.file} className="border-l-2 pl-2" style={{ borderColor: theme.hex }}>
@@ -1818,7 +1963,7 @@ const MusicFinanceView = ({ theme }) => {
         </Panel>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-grow">
-          <Panel title="QUICKBOOKS" jpTitle="P&L · cash flow" theme={theme}>
+          <Panel id="decision-finance" title="QUICKBOOKS" jpTitle="P&L · cash flow" theme={theme}>
             <AwaitingCapture
               pointer={aw.quickbooks || "data-sources/quickbooks/STATUS.md"}
               note="Token expired. Re-auth via Claude.ai connector, then run npm run refresh."
@@ -1894,7 +2039,7 @@ const NetworkOpsView = ({ theme }) => {
       </div>
 
       <div className="md:col-span-4 relative pointer-events-auto flex flex-col gap-4 z-30">
-        <Panel title="ACTIVE ALERTS" isAlert theme={theme}>
+        <Panel id="decision-network" title="ACTIVE ALERTS" isAlert theme={theme}>
           <div className="flex items-start gap-3 w-full">
             <AlertTriangle size={34} className="text-red-500 animate-pulse shrink-0" />
             <div className="text-[10px] font-tech font-bold leading-relaxed">
@@ -2435,7 +2580,7 @@ const WorldView = ({ theme }) => {
         </div>
 
         <div className="md:col-span-5 flex flex-col gap-4 z-30">
-          <Panel title="NEWS DATALINK" jpTitle="outside-in" theme={theme}>
+          <Panel id="decision-world" title="NEWS DATALINK" jpTitle="outside-in" theme={theme}>
             {newsAwaiting ? (
               <AwaitingCapture
                 pointer={DATA.world.news?.pointer || "resources/news-sources.md"}
@@ -2495,6 +2640,8 @@ const MusicView = ({ theme }) => {
   const songviewConflicts = music.songviewConflicts;
   const annualRoyalty = music.annualRoyalty;
   const negotiations = music.negotiations;
+  const soundExchange = music.soundExchange;
+  const warnerPayments = music.warnerPayments;
   const [spotifyStatus, setSpotifyStatus] = useState(null);
   const [spotifyError, setSpotifyError] = useState(null);
   const [spotifyConnecting, setSpotifyConnecting] = useState(false);
@@ -2614,6 +2761,24 @@ const MusicView = ({ theme }) => {
   );
 
   const needsReauth = Boolean(spotifyError && /401|expired|token|unauthor/i.test(spotifyError));
+  const actionLoopLayout = (() => {
+    if (actions.length > 6) {
+      return {
+        panel: "xl:col-span-12",
+        grid: "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2"
+      };
+    }
+    if (actions.length > 3) {
+      return {
+        panel: "xl:col-span-8",
+        grid: "grid grid-cols-1 md:grid-cols-2 gap-2"
+      };
+    }
+    return {
+      panel: "xl:col-span-4",
+      grid: "grid grid-cols-1 gap-2"
+    };
+  })();
 
   return (
     <motion.div variants={pageRevealVariants} initial="hidden" animate="show" exit="exit" className="flex flex-col h-full relative p-2 md:p-4 z-30 pointer-events-auto overflow-y-auto scrollbar-hide">
@@ -2708,12 +2873,12 @@ const MusicView = ({ theme }) => {
           {channels.map((ch) => <KV key={ch.label} k={ch.label} v={`${ch.status} · ${ch.value}`} green={ch.status === "snapshot" || ch.status === "note ready"} theme={theme} />)}
         </Panel>
 
-        <Panel title="ACTION LOOPS" jpTitle="monthly ritual" theme={theme} className="xl:col-span-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <Panel title="ACTION LOOPS" jpTitle={`${actions.length || 0} monthly rituals`} theme={theme} className={actionLoopLayout.panel}>
+          <div className={actionLoopLayout.grid}>
             {actions.length ? actions.map((a) => (
-              <div key={a.text} className="flex items-start gap-2 rounded-xl border p-2 font-tech text-[10px]" style={{ borderColor: `${theme.hex}33`, background: "rgba(255,255,255,.025)", color: "#d0d6e0" }}>
-                <span style={{ color: a.done ? "#9BF0E1" : "#FFB86B" }}>{a.done ? "●" : "○"}</span>
-                <span>{a.text}</span>
+              <div key={a.text} className="flex h-full min-h-[54px] items-start gap-2 rounded-xl border p-2 font-tech text-[10px] leading-relaxed" style={{ borderColor: `${theme.hex}33`, background: "rgba(255,255,255,.025)", color: "#d0d6e0" }}>
+                <span className="shrink-0" style={{ color: a.done ? "#9BF0E1" : "#FFB86B" }}>{a.done ? "●" : "○"}</span>
+                <span className="min-w-0">{a.text}</span>
               </div>
             )) : <AwaitingCapture pointer="Music.md" theme={theme} compact />}
           </div>
@@ -2721,7 +2886,7 @@ const MusicView = ({ theme }) => {
 
         {/* Active Negotiations — time-critical: SACRIFICES drops 2026-05-29 */}
         {negotiations?.negotiations?.length > 0 && (
-          <Panel title="ACTIVE NEGOTIATIONS" jpTitle="ball in court tracker" theme={theme} className="xl:col-span-4">
+          <Panel id="decision-music" title="ACTIVE NEGOTIATIONS" jpTitle={`ball in court · counters live · last gmail check ${negotiations.negotiations[0]?.lastCheckedAt ? new Date(negotiations.negotiations[0].lastCheckedAt).toLocaleString() : "never"}`} theme={theme} className="xl:col-span-4">
             {negotiations.negotiations.map((n) => {
               const ballThem = n.ballInCourt === "them";
               return (
@@ -2833,7 +2998,226 @@ const MusicView = ({ theme }) => {
             </div>
           </Panel>
         )}
+
+        {/* WMG Catalog Sale Payments */}
+        {warnerPayments?.payments?.length > 0 && (
+          <Panel title="WMG CATALOG SALE" jpTitle={`${warnerPayments.wmgPayee} · acct ${warnerPayments.wmgAccountNumber}`} theme={theme} className="xl:col-span-4">
+            {warnerPayments.payments.map((p) => (
+              <div key={p.paymentDocument} className="rounded-[14px] border p-3 mb-2" style={{ borderColor: `${theme.hex}55`, background: "linear-gradient(135deg, rgba(155,240,225,.08), rgba(255,255,255,.02))" }}>
+                <div className="font-tech text-[9px] uppercase tracking-[0.22em] opacity-60" style={{ color: theme.hex }}>{p.paymentDate}</div>
+                <div className="font-display text-3xl leading-none mt-1" style={{ color: "#9BF0E1", textShadow: `0 0 14px ${theme.hex}33` }}>
+                  ${Number(p.grossAmount).toLocaleString()}
+                </div>
+                <div className="font-tech text-[10px] mt-1 opacity-75" style={{ color: "#d0d6e0" }}>{p.purpose}</div>
+                <div className="font-tech text-[9px] mt-2 opacity-50" style={{ color: theme.hex }}>doc: {p.paymentDocument}</div>
+              </div>
+            ))}
+            {warnerPayments.summary?.expectedFromSale && (
+              <div className="font-tech text-[9px] mt-2 leading-relaxed border-l-2 pl-2" style={{ color: "#FFB86B", borderColor: "#FFB86B" }}>
+                Tax records show ${(warnerPayments.summary.expectedFromSale / 1000).toFixed(0)}K capital gain. Cash received {warnerPayments.summary.totalReceivedFormatted}. Gap of ~${((warnerPayments.summary.expectedFromSale - warnerPayments.summary.totalReceived) / 1000).toFixed(0)}K — verify deferred / holdback / installment.
+              </div>
+            )}
+          </Panel>
+        )}
+
+        {/* SoundExchange */}
+        {soundExchange?.registration && (
+          <Panel title="SOUNDEXCHANGE" jpTitle="neighboring rights" theme={theme} className="xl:col-span-4">
+            <div className="font-display text-3xl leading-none mb-1" style={{ color: "#9BF0E1", textShadow: `0 0 12px ${theme.hex}33` }}>
+              {soundExchange.summary?.lastYearTotalFormatted || "—"}
+            </div>
+            <div className="font-tech text-[10px] mb-3 opacity-75" style={{ color: "#d0d6e0" }}>
+              {soundExchange.annualRoyalties?.[0]?.year} · {soundExchange.annualRoyalties?.[0]?.form}
+            </div>
+            <KV k="account #" v={soundExchange.registration.accountNumber} theme={theme} />
+            <KV k="registered as" v={soundExchange.registration.registeredAs} theme={theme} />
+            <KV k="status" v={soundExchange.registration.status} green={soundExchange.registration.status === "ACTIVE"} theme={theme} />
+            <div className="font-tech text-[9px] mt-2 opacity-60" style={{ color: theme.hex }}>
+              {soundExchange.summary?.note}
+            </div>
+          </Panel>
+        )}
       </div>
+    </motion.div>
+  );
+};
+
+const formatEvidenceTime = (value) => {
+  if (!value) return "time unknown";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return date.toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+};
+
+const getViewPulse = (view) => {
+  const inventory = DATA.inventory || {};
+  const generatedAt = META?.generatedAt;
+  const firstTrigger = DATA.triggers?.[0];
+  const firstNews = DATA.world.news?.items?.[0];
+  const firstGap = (DATA.brain.synthesisGaps || []).find((gap) => !gap.exists) || DATA.brain.synthesisGaps?.[0];
+  const negotiations = DATA.music.negotiations?.negotiations || [];
+  const musicPriority = negotiations.find((item) => item.urgency === "HIGH") || negotiations[0];
+  const financeBlocked = (DATA.finance.kpis || []).find((item) => item.awaiting || ["MISSING", "AWAITING"].includes(String(item.value))) || DATA.finance.kpis?.[0];
+  const networkAlert = DATA.network.alerts?.[0];
+  const rows = {
+    [VIEWS.HOME]: {
+      kicker: "DECISION LAYER",
+      mission: "Choose one lane. Clear the highest-risk blocker. Convert signal into action.",
+      signal: firstTrigger?.label || "No ranked next move is available.",
+      why: firstTrigger ? `${firstTrigger.level || "WATCH"} · direction ${firstTrigger.rule || "review"}` : "The action queue needs capture.",
+      source: "EXTRACTED",
+      evidence: `Vault refresh · ${formatEvidenceTime(generatedAt)}`,
+      target: "decision-intent",
+      metrics: [["lanes", `${(DATA.northStars || []).filter((item) => item.value && !["MISSING", "AWAITING"].includes(String(item.value))).length}/${(DATA.northStars || []).length}`], ["blockers", (DATA.triggers || []).length], ["vault files", inventory.totalFiles ?? "—"]]
+    },
+    [VIEWS.WORLD]: {
+      kicker: "EXTERNAL SIGNAL",
+      mission: "Scan the world for movement that changes timing, leverage, or creative direction.",
+      signal: firstNews?.title || DATA.world.anomalies?.[0]?.label || "No external headline is available.",
+      why: firstNews ? `${firstNews.source || "news feed"} · external signal, not verified intelligence` : "Using the latest cached anomaly snapshot.",
+      source: "SNAPSHOT",
+      evidence: `News refresh · ${formatEvidenceTime(DATA.world.news?.fetchedAt || generatedAt)}`,
+      target: "decision-world",
+      metrics: [["sentiment", DATA.world.sentimentIndex ?? "—"], ["anomalies", (DATA.world.anomalies || []).length], ["briefs", (DATA.world.news?.items || []).length]]
+    },
+    [VIEWS.BRAIN]: {
+      kicker: "KNOWLEDGE ENGINE",
+      mission: "Turn captured material into claimed thinking, active decisions, and reusable leverage.",
+      signal: firstGap?.title || "No unresolved synthesis gap is ranked.",
+      why: firstGap?.reason || "Review the processing queue for the next claimable note.",
+      source: "EXTRACTED",
+      evidence: `Filesystem refresh · ${formatEvidenceTime(generatedAt)}`,
+      target: "decision-brain",
+      metrics: [["vault files", inventory.totalFiles ?? "—"], ["gaps", (DATA.brain.synthesisGaps || []).filter((gap) => !gap.exists).length], ["queue", (inventory.processingQueue || []).length]]
+    },
+    [VIEWS.MUSIC]: {
+      kicker: "CATALOG ENGINE",
+      mission: "Protect the catalog, surface the strongest records, and move the next relationship forward.",
+      signal: musicPriority?.title || DATA.music.actions?.find((item) => !item.done)?.text || "No music action is ranked.",
+      why: musicPriority?.actionForUser || "Review the current action loops and rights conflicts.",
+      source: "SNAPSHOT",
+      evidence: `Gmail metadata · ${formatEvidenceTime(musicPriority?.lastCheckedAt || DATA.music.negotiations?.lastUpdated || generatedAt)}`,
+      target: "decision-music",
+      metrics: [["negotiations", negotiations.length], ["conflicts", DATA.music.songviewConflicts?.conflicts?.length || 0], ["pipeline", (DATA.music.pipeline || []).length]]
+    },
+    [VIEWS.FINANCE]: {
+      kicker: "CAPITAL CONTROL",
+      mission: "Separate usable cash from expected money. Protect deadlines before optional spending.",
+      signal: financeBlocked?.awaiting ? `${financeBlocked.label}: source recovery required` : "QuickBooks is not live — restore bookkeeping access.",
+      why: "Extracted royalty and tax figures are useful, but they do not prove live cash, runway, P&L, or cash flow.",
+      source: "BLOCKED",
+      evidence: `Finance extraction · ${formatEvidenceTime(generatedAt)}`,
+      target: "decision-finance",
+      metrics: [["status", DATA.finance.status || "extracted"], ["sources", (DATA.finance.sources || []).length], ["signals", (DATA.finance.kpis || []).length]]
+    },
+    [VIEWS.NETWORK]: {
+      kicker: "RELATIONSHIP RADAR",
+      mission: "Protect active relationships, resolve infrastructure risk, and close open loops.",
+      signal: networkAlert?.text || DATA.network.risks?.[0]?.[0] || "No network intervention is ranked.",
+      why: networkAlert ? `${networkAlert.level || "watch"} severity · intervention queue` : "Review health checks and relationship freshness.",
+      source: "EXTRACTED",
+      evidence: `System + vault refresh · ${formatEvidenceTime(generatedAt)}`,
+      target: "decision-network",
+      metrics: [["alerts", (DATA.network.alerts || []).length], ["agents", (DATA.network.agents || []).length], ["people", (DATA.network.people?.keyRelationships || []).length]]
+    }
+  };
+  return rows[view] || rows[VIEWS.HOME];
+};
+
+const CommandPulse = ({ activeView, theme, onOpen }) => {
+  const pulse = getViewPulse(activeView);
+  const jumpToEvidence = () => {
+    const target = document.getElementById(pulse.target);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.animate(
+      [{ filter: `drop-shadow(0 0 0 ${theme.hex})`, transform: "scale(1)" }, { filter: `drop-shadow(0 0 26px ${theme.hex})`, transform: "scale(1.012)" }, { filter: "none", transform: "scale(1)" }],
+      { duration: 1250, easing: "ease-out" }
+    );
+  };
+  const sourceColor = pulse.source === "BLOCKED" ? "#FF5A36" : pulse.source === "SNAPSHOT" ? "#FFB300" : "#33FF00";
+  return (
+    <div className="relative mb-3 hidden min-h-[82px] overflow-hidden border bg-black/70 px-3 py-2.5 backdrop-blur-md cyber-panel-wrap md:flex md:items-stretch md:gap-3" style={{ borderColor: `${theme.hex}88`, boxShadow: `inset 0 0 38px ${theme.hex}12, 0 0 24px ${theme.hex}12` }}>
+      <div className="quality-ultra pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[command-sweep_5.4s_linear_infinite]" />
+      <div className="relative flex min-w-[145px] items-center gap-2 border-r border-white/10 pr-3">
+        <span className="relative flex h-9 w-9 items-center justify-center rounded-full border" style={{ borderColor: theme.hex, color: theme.hex, boxShadow: `0 0 18px ${theme.hex}55` }}><Activity className="h-4 w-4" /><span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full" style={{ background: theme.hex, animation: "pulse-node 1.8s ease-in-out infinite" }} /></span>
+        <div><div className="font-tech text-[8px] uppercase tracking-[0.24em] text-white/50">decision rail</div><div className="font-display text-[11px] font-black uppercase tracking-[0.12em]" style={{ color: theme.hex }}>{pulse.kicker}</div></div>
+      </div>
+      <div className="relative min-w-0 flex-1 py-0.5">
+        <div className="mb-1 flex items-center gap-2">
+          <span className="rounded-full border px-2 py-0.5 font-tech text-[7px] font-black tracking-[0.18em]" style={{ borderColor: `${sourceColor}99`, color: sourceColor, background: `${sourceColor}12` }}>{pulse.source}</span>
+          <span className="truncate font-tech text-[8px] uppercase tracking-[0.14em] text-white/45">{pulse.evidence}</span>
+        </div>
+        <div className="truncate font-display text-[13px] font-black uppercase text-white">{pulse.signal}</div>
+        <div className="mt-1 line-clamp-2 font-tech text-[8px] leading-snug text-white/60">WHY: {pulse.why}</div>
+      </div>
+      <div className="relative flex shrink-0 items-center gap-2">
+        {pulse.metrics.slice(0, 2).map(([label, value]) => <div key={label} className="min-w-[68px] rounded-xl border border-white/10 bg-white/[0.035] px-2 py-2 text-right"><div className="max-w-[92px] truncate font-display text-[11px] font-black uppercase text-white">{String(value)}</div><div className="font-tech text-[7px] uppercase tracking-[0.16em] text-white/50">{label}</div></div>)}
+        <button onClick={jumpToEvidence} className="flex h-10 items-center gap-1.5 rounded-xl border px-3 font-tech text-[8px] font-black uppercase tracking-[0.14em] transition-all hover:-translate-y-0.5 hover:bg-white/10" style={{ borderColor: `${theme.hex}aa`, color: theme.hex }} title="Jump to the evidence panel"><Target className="h-3.5 w-3.5" /> evidence</button>
+        <button onClick={onOpen} className="flex h-10 items-center gap-1.5 rounded-xl border border-white/15 px-3 font-tech text-[8px] font-bold uppercase tracking-[0.14em] text-white/60 transition-all hover:bg-white/10" title="Open command deck (⌘K)"><Command className="h-3 w-3" /> deck</button>
+      </div>
+    </div>
+  );
+};
+
+const CommandDeck = ({ open, onClose, activeView, onNavigate, quality, onQuality, theme }) => {
+  const [copied, setCopied] = useState(false);
+  if (!open) return null;
+  const pulse = getViewPulse(activeView);
+  const activeTab = TABS.find((tab) => tab.id === activeView);
+  const brief = `AX-L Mania / ${activeTab?.label || activeView}\nMission: ${pulse.mission}\nSignals: ${pulse.metrics.map(([label, value]) => `${label}=${value}`).join(" · ")}\nGive me the highest-leverage next move, what evidence supports it, and what not to do yet.`;
+  const copyBrief = async () => {
+    try {
+      await navigator.clipboard.writeText(brief);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
+  };
+  return (
+    <motion.div className="fixed inset-0 z-[200] flex items-start justify-center bg-black/78 px-4 pt-[9vh] backdrop-blur-xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <motion.div className="relative w-full max-w-[860px] overflow-hidden border bg-[#030708]/95 shadow-2xl cyber-panel-wrap" style={{ borderColor: `${theme.hex}aa`, boxShadow: `0 0 90px ${theme.hex}35` }} initial={{ y: -24, scale: 0.97, opacity: 0 }} animate={{ y: 0, scale: 1, opacity: 1 }} exit={{ y: -16, scale: 0.98, opacity: 0 }}>
+        <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={{ backgroundImage: `linear-gradient(${theme.hex} 1px, transparent 1px), linear-gradient(90deg, ${theme.hex} 1px, transparent 1px)`, backgroundSize: "28px 28px" }} />
+        <div className="relative border-b border-white/10 p-5">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border" style={{ borderColor: theme.hex, color: theme.hex, boxShadow: `0 0 24px ${theme.hex}45` }}><Sparkles className="h-5 w-5" /></div>
+              <div><div className="font-tech text-[9px] uppercase tracking-[0.32em] text-white/60">AX-L MANIA // APEX CONTROL</div><div className="font-display text-2xl font-black uppercase text-white">Command Deck</div></div>
+            </div>
+            <button onClick={onClose} className="rounded-lg border border-white/15 px-3 py-1.5 font-tech text-[9px] uppercase text-white/50 hover:bg-white/10">ESC</button>
+          </div>
+        </div>
+        <div className="relative grid gap-5 p-5 md:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <div className="mb-2 font-tech text-[8px] uppercase tracking-[0.24em] text-white/50">jump to system</div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {TABS.map((tab, index) => {
+                const Icon = tab.icon;
+                const selected = tab.id === activeView;
+                return <button key={tab.id} onClick={() => { onNavigate(tab.id); onClose(); }} className="group rounded-2xl border bg-white/[0.03] p-3 text-left transition-all hover:-translate-y-0.5 hover:bg-white/[0.08]" style={{ borderColor: selected ? `${tab.color}cc` : "rgba(255,255,255,.12)", boxShadow: selected ? `inset 0 0 25px ${tab.color}18` : "none" }}><div className="mb-3 flex items-center justify-between"><Icon className="h-4 w-4" style={{ color: tab.color }} /><span className="font-tech text-[8px] text-white/40">⌘{index + 1}</span></div><div className="font-display text-sm font-black uppercase text-white">{tab.label}</div><div className="mt-1 font-tech text-[8px] uppercase" style={{ color: `${tab.color}bb` }}>{getViewPulse(tab.id).kicker}</div></button>;
+              })}
+            </div>
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
+              <div className="mb-2 flex items-center gap-2 font-display text-xs font-black uppercase" style={{ color: theme.hex }}><Zap className="h-3.5 w-3.5" /> current mission</div>
+              <div className="font-tech text-[11px] leading-relaxed text-white/70">{pulse.mission}</div>
+              <div className="mt-3 flex flex-wrap gap-2">{pulse.metrics.map(([label, value]) => <span key={label} className="rounded-full border border-white/10 px-2 py-1 font-tech text-[8px] uppercase text-white/55"><b className="text-white">{String(value)}</b> {label}</span>)}</div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-4">
+              <div className="mb-3 flex items-center gap-2 font-display text-xs font-black uppercase text-white"><Layers3 className="h-3.5 w-3.5" style={{ color: theme.hex }} /> visual engine</div>
+              <div className="grid grid-cols-3 gap-2">{["eco", "balanced", "ultra"].map((mode) => <button key={mode} onClick={() => onQuality(mode)} className="rounded-xl border px-2 py-2 font-tech text-[8px] font-bold uppercase transition-all hover:bg-white/10" style={{ borderColor: quality === mode ? theme.hex : "rgba(255,255,255,.12)", color: quality === mode ? theme.hex : "rgba(255,255,255,.45)", background: quality === mode ? `${theme.hex}12` : "transparent" }}>{mode}</button>)}</div>
+              <div className="mt-2 font-tech text-[8px] leading-snug text-white/50">Ultra enables the full animation stack. Balanced trims ambient effects. Eco minimizes motion.</div>
+            </div>
+            <div className="rounded-2xl border p-4" style={{ borderColor: `${theme.hex}45`, background: `${theme.hex}08` }}>
+              <div className="mb-2 flex items-center gap-2 font-display text-xs font-black uppercase" style={{ color: theme.hex }}><Gauge className="h-3.5 w-3.5" /> send to Foleybot</div>
+              <div className="max-h-32 overflow-hidden whitespace-pre-wrap font-tech text-[9px] leading-relaxed text-white/70">{brief}</div>
+              <button onClick={copyBrief} className="mt-3 w-full rounded-xl border px-3 py-2 font-tech text-[9px] font-bold uppercase tracking-[0.16em] transition-all hover:bg-white/10" style={{ borderColor: `${theme.hex}88`, color: theme.hex }}>{copied ? "COPIED — PASTE INTO FOLEYBOT" : "COPY STRATEGIC BRIEF"}</button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -2845,6 +3229,8 @@ export default function App() {
   const [hoveredTab, setHoveredTab] = useState(null);
   const [showSplash, setShowSplash] = useState(true);
   const [time, setTime] = useState(new Date());
+  const [commandDeckOpen, setCommandDeckOpen] = useState(false);
+  const [quality, setQuality] = useState(() => localStorage.getItem("axl-visual-quality") || "ultra");
   const reducedMotion = useReducedMotion();
 
   const currentTheme = THEMES[activeView];
@@ -2890,6 +3276,34 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("axl-visual-quality", quality);
+  }, [quality]);
+
+  useEffect(() => {
+    const handleCommandKeys = (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setCommandDeckOpen((value) => !value);
+        return;
+      }
+      if (event.key === "Escape") {
+        setCommandDeckOpen(false);
+        return;
+      }
+      if ((event.metaKey || event.ctrlKey) && /^[1-6]$/.test(event.key)) {
+        event.preventDefault();
+        const tab = TABS[Number(event.key) - 1];
+        if (tab) {
+          setActiveView(tab.id);
+          setIsMenuOpen(false);
+        }
+      }
+    };
+    window.addEventListener("keydown", handleCommandKeys);
+    return () => window.removeEventListener("keydown", handleCommandKeys);
+  }, []);
+
   const handleTabClick = (id) => {
     setActiveView(id);
     setIsMenuOpen(false);
@@ -2903,9 +3317,22 @@ export default function App() {
   const formatTime = (date) => `${date.toTimeString().split(" ")[0]} JST`;
 
   return (
-    <div className="h-screen min-h-screen w-screen overflow-hidden bg-[#020101] font-display selection:bg-white selection:text-black transition-colors duration-700 [height:100dvh] [min-height:100dvh]">
+    <div data-quality={quality} className="h-screen min-h-screen w-screen overflow-hidden bg-[#020101] font-display selection:bg-white selection:text-black transition-colors duration-700 [height:100dvh] [min-height:100dvh]">
       <GlobalStyles />
       <AnimatePresence>{showSplash && <SplashScreen onComplete={handleSplashComplete} />}</AnimatePresence>
+      <AnimatePresence>
+        {commandDeckOpen && (
+          <CommandDeck
+            open={commandDeckOpen}
+            onClose={() => setCommandDeckOpen(false)}
+            activeView={activeView}
+            onNavigate={handleTabClick}
+            quality={quality}
+            onQuality={setQuality}
+            theme={currentTheme}
+          />
+        )}
+      </AnimatePresence>
 
       <div className="relative flex h-full min-h-0 w-full flex-col overflow-hidden bg-[#020101] transition-all duration-700" style={{ boxShadow: `inset 0 0 120px ${currentTheme.hex}24` }}>
         {/* Draggable strip across the top — hiddenInset removes the native titlebar so we add our own. */}
@@ -3026,7 +3453,14 @@ export default function App() {
                 </div>
               </div>
 
+              <button onClick={() => setCommandDeckOpen(true)} className="group hidden items-center gap-2 rounded-2xl border bg-black/45 px-3 py-2 font-tech text-[9px] font-bold uppercase tracking-[0.18em] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/10 md:flex" style={{ borderColor: `${currentTheme.hex}66`, color: currentTheme.hex, boxShadow: `0 0 24px ${currentTheme.hex}18` }} title="Open Command Deck (⌘K)">
+                <Command className="h-3.5 w-3.5 transition-transform group-hover:rotate-12" />
+                APEX DECK
+                <span className="rounded border border-white/10 px-1.5 py-0.5 text-[7px] text-white/50">⌘K</span>
+              </button>
             </header>
+
+            <CommandPulse activeView={activeView} theme={currentTheme} onOpen={() => setCommandDeckOpen(true)} />
 
             <div className="relative z-50 min-h-0 flex-grow pointer-events-auto overflow-y-auto overflow-x-hidden scrollbar-hide">
               <AnimatePresence mode="wait">
